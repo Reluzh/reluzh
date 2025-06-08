@@ -1,6 +1,27 @@
 
 import type { Listing, GroceryItem, UserProfile } from '@/types';
 
+let imageCounter = 1;
+const getImagePath = () => {
+  if (imageCounter <= 19) {
+    return `/assets/im${imageCounter++}.png`;
+  }
+  // Fallback or logic for more than 19 images if needed,
+  // for now, it will just stop replacing after im19.png
+  // This function will be called for existing paths, so we need a fallback if counter > 19
+  return (currentPath: string) => currentPath; 
+};
+
+// Helper to apply new image path or keep old if counter exceeds 19
+const assignImagePath = (originalPath: string | undefined): string | undefined => {
+  if (!originalPath) return undefined; // Don't assign if no original path
+  if (imageCounter <= 19) {
+    return `/assets/im${imageCounter++}.png`;
+  }
+  return originalPath; // Keep original if we've used all 19 images
+};
+
+
 export const mockListings: Listing[] = [
   {
     id: '1',
@@ -12,15 +33,15 @@ export const mockListings: Listing[] = [
     ratingCount: 215,
     priceTier: '$$',
     prepTime: '25-35 min',
-    imageUrl: '/assets/modern-cafe-interior.png',
+    imageUrl: assignImagePath('/assets/modern-cafe-interior.png'),
     pickupTimes: 'Mon-Fri, 6 PM - 8 PM',
     category: 'Cafe',
     isFavorite: true,
     offers: [
-      { id: 'o1', name: 'Spaghetti Carbonara', itemCategory: 'Popular', originalPrice: 15.00, discountedPrice: 12.99, quantityLeft: 5, description: 'Creamy pasta with bacon and parmesan.', imageUrl: '/assets/spaghetti-carbonara.png' },
-      { id: 'o2', name: 'Margherita Pizza', itemCategory: 'New', originalPrice: 18.00, discountedPrice: 14.99, quantityLeft: 10, description: 'Classic pizza with tomato, mozzarella, and basil.', imageUrl: '/assets/margherita-pizza.png' },
-      { id: 'o2b', name: 'Tiramisu', itemCategory: "Chef's Choice", originalPrice: 9.00, discountedPrice: 7.99, quantityLeft: 7, description: 'Coffee-flavored dessert with mascarpone cream.', imageUrl: '/assets/tiramisu-dessert.png'},
-      { id: 'o2c', name: 'Avocado Toast', itemCategory: 'Popular', originalPrice: 10.00, discountedPrice: 8.50, quantityLeft: 8, description: 'Sourdough toast with fresh avocado and seasoning.', imageUrl: '/assets/avocado-toast.png' },
+      { id: 'o1', name: 'Spaghetti Carbonara', itemCategory: 'Popular', originalPrice: 15.00, discountedPrice: 12.99, quantityLeft: 5, description: 'Creamy pasta with bacon and parmesan.', imageUrl: assignImagePath('/assets/spaghetti-carbonara.png') },
+      { id: 'o2', name: 'Margherita Pizza', itemCategory: 'New', originalPrice: 18.00, discountedPrice: 14.99, quantityLeft: 10, description: 'Classic pizza with tomato, mozzarella, and basil.', imageUrl: assignImagePath('/assets/margherita-pizza.png') },
+      { id: 'o2b', name: 'Tiramisu', itemCategory: "Chef's Choice", originalPrice: 9.00, discountedPrice: 7.99, quantityLeft: 7, description: 'Coffee-flavored dessert with mascarpone cream.', imageUrl: assignImagePath('/assets/tiramisu-dessert.png')},
+      { id: 'o2c', name: 'Avocado Toast', itemCategory: 'Popular', originalPrice: 10.00, discountedPrice: 8.50, quantityLeft: 8, description: 'Sourdough toast with fresh avocado and seasoning.', imageUrl: assignImagePath('/assets/avocado-toast.png') },
     ],
   },
   {
@@ -33,7 +54,7 @@ export const mockListings: Listing[] = [
     ratingCount: 180,
     priceTier: '$',
     prepTime: 'N/A',
-    imageUrl: '/assets/grocery-store-aisle.png',
+    imageUrl: assignImagePath('/assets/grocery-store-aisle.png'),
     pickupTimes: 'Daily, 7 PM - 9 PM',
     category: 'Produce',
     isFavorite: false,
@@ -52,7 +73,7 @@ export const mockListings: Listing[] = [
     ratingCount: 305,
     priceTier: '$$',
     prepTime: '20-30 min',
-    imageUrl: '/assets/pizzeria-oven.png',
+    imageUrl: assignImagePath('/assets/pizzeria-oven.png'),
     pickupTimes: 'Tue-Sun, 8 PM - 9 PM',
     category: 'Italian',
     isFavorite: true,
@@ -70,7 +91,7 @@ export const mockListings: Listing[] = [
     ratingCount: 95,
     priceTier: '$',
     prepTime: 'N/A',
-    imageUrl: '/assets/bakery-display-case.png',
+    imageUrl: assignImagePath('/assets/bakery-display-case.png'),
     pickupTimes: 'Mon-Sat, 4 PM - 5 PM',
     category: 'Bakery',
     isFavorite: false,
@@ -81,17 +102,17 @@ export const mockListings: Listing[] = [
 ];
 
 export const mockGroceryCategories = [
-  { id: 'cat1', name: 'Fresh Produce', imageUrl: '/assets/fresh-produce.png' },
-  { id: 'cat2', name: 'Pantry Staples', imageUrl: '/assets/pantry-staples.png' },
-  { id: 'cat3', name: 'Dairy & Eggs', imageUrl: '/assets/dairy-eggs.png' },
-  { id: 'cat4', name: 'Snacks', imageUrl: '/assets/snacks-category.png' },
+  { id: 'cat1', name: 'Fresh Produce', imageUrl: assignImagePath('/assets/fresh-produce.png') },
+  { id: 'cat2', name: 'Pantry Staples', imageUrl: assignImagePath('/assets/pantry-staples.png') },
+  { id: 'cat3', name: 'Dairy & Eggs', imageUrl: assignImagePath('/assets/dairy-eggs.png') },
+  { id: 'cat4', name: 'Snacks', imageUrl: assignImagePath('/assets/snacks-category.png') },
 ];
 
 export const mockPopularStores: Pick<Listing, 'id' | 'name' | 'imageUrl' | 'type'>[] = [
-  { id: 'store1', name: 'Fresh Foods Market', type: 'Grocery Store', imageUrl: '/assets/popular-store-modern-grocery.png' },
-  { id: 'store2', name: 'Quick Stop Groceries', type: 'Grocery Store', imageUrl: '/assets/popular-store-convenience.png' },
-  { id: 'store3', name: 'Organic Oasis', type: 'Grocery Store', imageUrl: '/assets/popular-store-organic.png' },
-  { id: 'store4', name: 'Daily Essentials', type: 'Grocery Store', imageUrl: '/assets/popular-store-supermarket.png' },
+  { id: 'store1', name: 'Fresh Foods Market', type: 'Grocery Store', imageUrl: assignImagePath('/assets/popular-store-modern-grocery.png') },
+  { id: 'store2', name: 'Quick Stop Groceries', type: 'Grocery Store', imageUrl: assignImagePath('/assets/popular-store-convenience.png') },
+  { id: 'store3', name: 'Organic Oasis', type: 'Grocery Store', imageUrl: assignImagePath('/assets/popular-store-organic.png') },
+  { id: 'store4', name: 'Daily Essentials', type: 'Grocery Store', imageUrl: assignImagePath('/assets/popular-store-supermarket.png') },
 ];
 
 
@@ -105,7 +126,7 @@ export const mockGroceryItems: GroceryItem[] = [
     discountedPrice: 1.99,
     quantityLeft: 20,
     category: 'Fruits',
-    imageUrl: '/assets/grocery-item-apples.png',
+    imageUrl: assignImagePath('/assets/grocery-item-apples.png'),
     expiryDate: '3 days left',
     description: 'A bag of slightly bruised organic apples.'
   },
@@ -118,7 +139,7 @@ export const mockGroceryItems: GroceryItem[] = [
     discountedPrice: 2.00,
     quantityLeft: 10,
     category: 'Bakery',
-    imageUrl: '/assets/grocery-item-bread.png',
+    imageUrl: assignImagePath('/assets/grocery-item-bread.png'),
     expiryDate: 'Best by tomorrow',
     description: 'Fresh whole wheat bread, near expiry.'
   },
@@ -131,7 +152,7 @@ export const mockGroceryItems: GroceryItem[] = [
     discountedPrice: 1.75,
     quantityLeft: 5,
     category: 'Dairy',
-    imageUrl: '/assets/grocery-item-milk.png',
+    imageUrl: assignImagePath('/assets/grocery-item-milk.png'),
     expiryDate: '2 days left',
     description: 'Gallon of 2% milk.'
   },
@@ -144,7 +165,7 @@ export const mockGroceryItems: GroceryItem[] = [
     discountedPrice: 1.00,
     quantityLeft: 15,
     category: 'Vegetables',
-    imageUrl: '/assets/grocery-item-spinach.png',
+    imageUrl: assignImagePath('/assets/grocery-item-spinach.png'), // This might be the 20th image, so it might not be replaced
     expiryDate: 'Use soon',
     description: 'Fresh spinach, slightly wilted.'
   }
@@ -155,7 +176,9 @@ export const mockUserProfile: UserProfile = {
   name: 'Imane Nejmaoui',
   email: 'imane.nejmaoui@example.com',
   address: '100 Eco Lane, Green City, GC 54321',
-  profilePictureUrl: '/assets/profile-imane-smiling.png',
+  profilePictureUrl: assignImagePath('/assets/profile-imane-smiling.png'), // This could also be beyond 19
 };
 
 export const mockFavoriteVendors: Listing[] = mockListings.filter(listing => listing.isFavorite);
+
+    
