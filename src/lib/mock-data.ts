@@ -12,16 +12,15 @@ export const mockListings: Listing[] = [
     ratingCount: 215,
     priceTier: '$$',
     prepTime: '25-35 min',
-    imageUrl: 'https://placehold.co/600x400.png', // Restaurant interior, bright, modern
-    dataAiHint: 'modern cafe interior',
+    imageUrl: '/assets/modern-cafe-interior.png', // Was: 'https://placehold.co/600x400.png', dataAiHint: 'modern cafe interior'
     pickupTimes: 'Mon-Fri, 6 PM - 8 PM',
     category: 'Cafe',
     isFavorite: true,
     offers: [
-      { id: 'o1', name: 'Spaghetti Carbonara', itemCategory: 'Popular', originalPrice: 15.00, discountedPrice: 12.99, quantityLeft: 5, description: 'Creamy pasta with bacon and parmesan.', imageUrl: 'https://placehold.co/200x200.png', dataAiHint: 'spaghetti carbonara' },
-      { id: 'o2', name: 'Margherita Pizza', itemCategory: 'New', originalPrice: 18.00, discountedPrice: 14.99, quantityLeft: 10, description: 'Classic pizza with tomato, mozzarella, and basil.', imageUrl: 'https://placehold.co/200x200.png', dataAiHint: 'margherita pizza' },
-      { id: 'o2b', name: 'Tiramisu', itemCategory: "Chef's Choice", originalPrice: 9.00, discountedPrice: 7.99, quantityLeft: 7, description: 'Coffee-flavored dessert with mascarpone cream.', imageUrl: 'https://placehold.co/200x200.png', dataAiHint: 'tiramisu dessert'},
-      { id: 'o2c', name: 'Avocado Toast', itemCategory: 'Popular', originalPrice: 10.00, discountedPrice: 8.50, quantityLeft: 8, description: 'Sourdough toast with fresh avocado and seasoning.', imageUrl: 'https://placehold.co/200x200.png', dataAiHint: 'avocado toast' },
+      { id: 'o1', name: 'Spaghetti Carbonara', itemCategory: 'Popular', originalPrice: 15.00, discountedPrice: 12.99, quantityLeft: 5, description: 'Creamy pasta with bacon and parmesan.', imageUrl: '/assets/spaghetti-carbonara.png' /* Was: 'https://placehold.co/200x200.png', dataAiHint: 'spaghetti carbonara' */ },
+      { id: 'o2', name: 'Margherita Pizza', itemCategory: 'New', originalPrice: 18.00, discountedPrice: 14.99, quantityLeft: 10, description: 'Classic pizza with tomato, mozzarella, and basil.', imageUrl: '/assets/margherita-pizza.png' /* Was: 'https://placehold.co/200x200.png', dataAiHint: 'margherita pizza' */ },
+      { id: 'o2b', name: 'Tiramisu', itemCategory: "Chef's Choice", originalPrice: 9.00, discountedPrice: 7.99, quantityLeft: 7, description: 'Coffee-flavored dessert with mascarpone cream.', imageUrl: '/assets/tiramisu-dessert.png' /* Was: 'https://placehold.co/200x200.png', dataAiHint: 'tiramisu dessert'*/},
+      { id: 'o2c', name: 'Avocado Toast', itemCategory: 'Popular', originalPrice: 10.00, discountedPrice: 8.50, quantityLeft: 8, description: 'Sourdough toast with fresh avocado and seasoning.', imageUrl: '/assets/avocado-toast.png' /* Was: 'https://placehold.co/200x200.png', dataAiHint: 'avocado toast' */ },
     ],
   },
   {
@@ -34,8 +33,7 @@ export const mockListings: Listing[] = [
     ratingCount: 180,
     priceTier: '$',
     prepTime: 'N/A',
-    imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'grocery store aisle',
+    imageUrl: '/assets/grocery-store-aisle.png', // Was: 'https://placehold.co/600x400.png', dataAiHint: 'grocery store aisle'
     pickupTimes: 'Daily, 7 PM - 9 PM',
     category: 'Produce',
     isFavorite: false,
@@ -54,8 +52,7 @@ export const mockListings: Listing[] = [
     ratingCount: 305,
     priceTier: '$$',
     prepTime: '20-30 min',
-    imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'pizzeria oven',
+    imageUrl: '/assets/pizzeria-oven.png', // Was: 'https://placehold.co/600x400.png', dataAiHint: 'pizzeria oven'
     pickupTimes: 'Tue-Sun, 8 PM - 9 PM',
     category: 'Italian',
     isFavorite: true,
@@ -73,8 +70,7 @@ export const mockListings: Listing[] = [
     ratingCount: 95,
     priceTier: '$',
     prepTime: 'N/A',
-    imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'bakery display case',
+    imageUrl: '/assets/bakery-display-case.png', // Was: 'https://placehold.co/600x400.png', dataAiHint: 'bakery display case'
     pickupTimes: 'Mon-Sat, 4 PM - 5 PM',
     category: 'Bakery',
     isFavorite: false,
@@ -85,17 +81,17 @@ export const mockListings: Listing[] = [
 ];
 
 export const mockGroceryCategories = [
-  { id: 'cat1', name: 'Fresh Produce', imageUrl: 'https://placehold.co/300x200.png', dataAiHint: 'fresh produce fruits vegetables' },
-  { id: 'cat2', name: 'Pantry Staples', imageUrl: 'https://placehold.co/300x200.png', dataAiHint: 'pantry staples grains pasta' },
-  { id: 'cat3', name: 'Dairy & Eggs', imageUrl: 'https://placehold.co/300x200.png', dataAiHint: 'dairy eggs milk cheese' },
-  { id: 'cat4', name: 'Snacks', imageUrl: 'https://placehold.co/300x200.png', dataAiHint: 'snacks chips crackers' },
+  { id: 'cat1', name: 'Fresh Produce', imageUrl: '/assets/fresh-produce.png' /* Was: 'https://placehold.co/300x200.png', dataAiHint: 'fresh produce fruits vegetables' */ },
+  { id: 'cat2', name: 'Pantry Staples', imageUrl: '/assets/pantry-staples.png' /* Was: 'https://placehold.co/300x200.png', dataAiHint: 'pantry staples grains pasta' */ },
+  { id: 'cat3', name: 'Dairy & Eggs', imageUrl: '/assets/dairy-eggs.png' /* Was: 'https://placehold.co/300x200.png', dataAiHint: 'dairy eggs milk cheese' */ },
+  { id: 'cat4', name: 'Snacks', imageUrl: '/assets/snacks-category.png' /* Was: 'https://placehold.co/300x200.png', dataAiHint: 'snacks chips crackers' */ },
 ];
 
-export const mockPopularStores: Pick<Listing, 'id' | 'name' | 'imageUrl' | 'dataAiHint' | 'type'>[] = [
-  { id: 'store1', name: 'Fresh Foods Market', type: 'Grocery Store', imageUrl: 'https://placehold.co/300x200.png', dataAiHint: 'modern grocery store' },
-  { id: 'store2', name: 'Quick Stop Groceries', type: 'Grocery Store', imageUrl: 'https://placehold.co/300x200.png', dataAiHint: 'convenience store aisle' },
-  { id: 'store3', name: 'Organic Oasis', type: 'Grocery Store', imageUrl: 'https://placehold.co/300x200.png', dataAiHint: 'organic food store' },
-  { id: 'store4', name: 'Daily Essentials', type: 'Grocery Store', imageUrl: 'https://placehold.co/300x200.png', dataAiHint: 'supermarket entrance' },
+export const mockPopularStores: Pick<Listing, 'id' | 'name' | 'imageUrl' | 'type'>[] = [
+  { id: 'store1', name: 'Fresh Foods Market', type: 'Grocery Store', imageUrl: '/assets/popular-store-modern-grocery.png' /* Was: 'https://placehold.co/300x200.png', dataAiHint: 'modern grocery store' */ },
+  { id: 'store2', name: 'Quick Stop Groceries', type: 'Grocery Store', imageUrl: '/assets/popular-store-convenience.png' /* Was: 'https://placehold.co/300x200.png', dataAiHint: 'convenience store aisle' */ },
+  { id: 'store3', name: 'Organic Oasis', type: 'Grocery Store', imageUrl: '/assets/popular-store-organic.png' /* Was: 'https://placehold.co/300x200.png', dataAiHint: 'organic food store' */ },
+  { id: 'store4', name: 'Daily Essentials', type: 'Grocery Store', imageUrl: '/assets/popular-store-supermarket.png' /* Was: 'https://placehold.co/300x200.png', dataAiHint: 'supermarket entrance' */ },
 ];
 
 
@@ -109,8 +105,7 @@ export const mockGroceryItems: GroceryItem[] = [
     discountedPrice: 1.99,
     quantityLeft: 20,
     category: 'Fruits',
-    imageUrl: 'https://placehold.co/300x200.png',
-    dataAiHint: 'apples fruit',
+    imageUrl: '/assets/grocery-item-apples.png', // Was: 'https://placehold.co/300x200.png', dataAiHint: 'apples fruit'
     expiryDate: '3 days left',
     description: 'A bag of slightly bruised organic apples.'
   },
@@ -123,8 +118,7 @@ export const mockGroceryItems: GroceryItem[] = [
     discountedPrice: 2.00,
     quantityLeft: 10,
     category: 'Bakery',
-    imageUrl: 'https://placehold.co/300x200.png',
-    dataAiHint: 'bread loaf',
+    imageUrl: '/assets/grocery-item-bread.png', // Was: 'https://placehold.co/300x200.png', dataAiHint: 'bread loaf'
     expiryDate: 'Best by tomorrow',
     description: 'Fresh whole wheat bread, near expiry.'
   },
@@ -137,8 +131,7 @@ export const mockGroceryItems: GroceryItem[] = [
     discountedPrice: 1.75,
     quantityLeft: 5,
     category: 'Dairy',
-    imageUrl: 'https://placehold.co/300x200.png',
-    dataAiHint: 'milk carton',
+    imageUrl: '/assets/grocery-item-milk.png', // Was: 'https://placehold.co/300x200.png', dataAiHint: 'milk carton'
     expiryDate: '2 days left',
     description: 'Gallon of 2% milk.'
   },
@@ -151,8 +144,7 @@ export const mockGroceryItems: GroceryItem[] = [
     discountedPrice: 1.00,
     quantityLeft: 15,
     category: 'Vegetables',
-    imageUrl: 'https://placehold.co/300x200.png',
-    dataAiHint: 'spinach leaves',
+    imageUrl: '/assets/grocery-item-spinach.png', // Was: 'https://placehold.co/300x200.png', dataAiHint: 'spinach leaves'
     expiryDate: 'Use soon',
     description: 'Fresh spinach, slightly wilted.'
   }
@@ -163,8 +155,7 @@ export const mockUserProfile: UserProfile = {
   name: 'Imane Nejmaoui',
   email: 'imane.nejmaoui@example.com',
   address: '100 Eco Lane, Green City, GC 54321',
-  profilePictureUrl: 'https://placehold.co/100x100.png',
-  dataAiHint: 'profile person smiling'
+  profilePictureUrl: '/assets/profile-imane-smiling.png', // Was: 'https://placehold.co/100x100.png', dataAiHint: 'profile person smiling'
 };
 
 export const mockFavoriteVendors: Listing[] = mockListings.filter(listing => listing.isFavorite);

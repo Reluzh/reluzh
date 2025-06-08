@@ -25,6 +25,7 @@ import {
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { cn } from '@/lib/utils'; // Import cn
 
 const FilterChip: React.FC<{ label: string; selected?: boolean; onClick?: () => void }> = ({ label, selected, onClick }) => (
   <Button
@@ -152,7 +153,7 @@ export default function GroceriesPage() {
             <Link href={`/groceries/category/${category.id}`} key={category.id} className="block group">
               <Card className="overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <div className="relative aspect-[4/3]">
-                  <Image src={category.imageUrl} alt={category.name} layout="fill" objectFit="cover" className="rounded-t-lg group-hover:scale-105 transition-transform" data-ai-hint={category.dataAiHint}/>
+                  <Image src={category.imageUrl} alt={category.name} layout="fill" objectFit="cover" className="rounded-t-lg group-hover:scale-105 transition-transform" />
                 </div>
                 <CardContent className="p-3">
                   <p className="font-medium text-sm text-center text-foreground truncate">{category.name}</p>
@@ -170,7 +171,7 @@ export default function GroceriesPage() {
              <Link href={`/listing/${store.id}`} key={store.id} className="block group"> {/* Assuming store IDs match listing IDs */}
               <Card className="overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <div className="relative aspect-[4/3]">
-                  <Image src={store.imageUrl} alt={store.name} layout="fill" objectFit="cover" className="rounded-t-lg group-hover:scale-105 transition-transform" data-ai-hint={store.dataAiHint}/>
+                  <Image src={store.imageUrl} alt={store.name} layout="fill" objectFit="cover" className="rounded-t-lg group-hover:scale-105 transition-transform" />
                 </div>
                 <CardContent className="p-3">
                   <p className="font-medium text-sm text-center text-foreground truncate">{store.name}</p>

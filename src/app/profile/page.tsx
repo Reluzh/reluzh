@@ -47,7 +47,7 @@ export default function ProfilePage() {
     <div className="pb-4">
       <header className="flex items-center space-x-4 py-4 mb-4">
         <Avatar className="w-16 h-16 border-2 border-primary">
-          <AvatarImage src={profile.profilePictureUrl} alt={profile.name} data-ai-hint={profile.dataAiHint} />
+          <AvatarImage src={profile.profilePictureUrl} alt={profile.name} />
           <AvatarFallback className="text-2xl bg-muted text-muted-foreground">
             {profile.name.split(' ').map(n => n[0]).join('')}
           </AvatarFallback>

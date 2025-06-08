@@ -1,3 +1,4 @@
+
 import type { GroceryItem } from '@/types';
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -21,7 +22,6 @@ const GroceryItemCard: React.FC<GroceryItemCardProps> = ({ item }) => {
             alt={item.name}
             layout="fill"
             objectFit="cover"
-            data-ai-hint={item.dataAiHint}
           />
         </div>
       )}

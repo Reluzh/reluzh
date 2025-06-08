@@ -1,3 +1,4 @@
+
 import type { Listing } from '@/types'; // Using Listing as it contains vendor info and offers
 import Image from 'next/image';
 import Link from 'next/link';
@@ -21,7 +22,6 @@ const VendorCard: React.FC<VendorCardProps> = ({ vendor, onRemoveFavorite }) => 
             alt={vendor.name}
             layout="fill"
             objectFit="cover"
-            data-ai-hint={vendor.dataAiHint}
           />
            <Badge variant={vendor.type === 'Restaurant' ? 'secondary' : 'outline'} className="absolute top-2 left-2">
             {vendor.type}

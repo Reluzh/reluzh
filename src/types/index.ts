@@ -7,7 +7,7 @@ export interface Vendor {
   distance: string; // e.g., "0.5 miles"
   rating: number; // 1-5
   imageUrl: string;
-  dataAiHint?: string;
+  // dataAiHint?: string; // Removed as images are now local
   isFavorite?: boolean;
 }
 
@@ -19,7 +19,7 @@ export interface OfferItem {
   quantityLeft: number;
   description?: string;
   imageUrl?: string;
-  dataAiHint?: string;
+  // dataAiHint?: string; // Removed as images are now local
   itemCategory?: string; // e.g., "Popular", "New", "Chef's Choice" for restaurant items
 }
 
@@ -45,5 +45,5 @@ export interface UserProfile {
   email: string;
   address?: string;
   profilePictureUrl?: string;
-  dataAiHint?: string;
+  // dataAiHint?: string; // Removed as images are now local
 }

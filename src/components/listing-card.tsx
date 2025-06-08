@@ -22,7 +22,6 @@ const ListingCard: React.FC<ListingCardProps> = ({ listing }) => {
             layout="fill"
             objectFit="cover"
             className="group-hover:scale-105 transition-transform duration-300"
-            data-ai-hint={listing.dataAiHint}
           />
            <Badge variant={listing.type === 'Restaurant' || listing.type === 'Cafe' || listing.type === 'Bakery' ? 'secondary' : 'outline'} className="absolute top-2 left-2 capitalize">
             {listing.type}
