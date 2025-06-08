@@ -22,16 +22,16 @@ export default function BottomNavbar() {
       {navItems.map((item) => {
         const isActive = pathname === item.href;
         return (
-          <Link key={item.label} href={item.href} legacyBehavior>
-            <a
-              className={cn(
-                "flex flex-col items-center justify-center text-xs font-medium h-full w-full transition-colors",
-                isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              <item.icon className={cn("h-6 w-6 mb-0.5", isActive ? "text-primary" : "")} />
-              {item.label}
-            </a>
+          <Link
+            key={item.label}
+            href={item.href}
+            className={cn(
+              "flex flex-col items-center justify-center text-xs font-medium h-full w-full transition-colors",
+              isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+            )}
+          >
+            <item.icon className={cn("h-6 w-6 mb-0.5", isActive ? "text-primary" : "")} />
+            {item.label}
           </Link>
         );
       })}
