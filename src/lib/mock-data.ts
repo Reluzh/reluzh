@@ -3,11 +3,14 @@ import type { Listing, GroceryItem, UserProfile } from '@/types';
 
 let imageCounter = 1; 
 
-const assignImagePath = (originalPath?: string): string | undefined => {
-  if (imageCounter <= 19) {
-    return `/assets/im${imageCounter++}.png`;
+export function assignImagePath(originalPath?: string): string {
+  // If originalPath is provided, use it directly
+  if (originalPath) {
+    return `/assets/${originalPath}`;
   }
-  return originalPath; 
+  // Otherwise, use the placeholder logic
+  const imageNumber = imageCounter++ % 19 + 1; // Cycle through im1.jpg to im19.jpg
+  return `/assets/im${imageNumber}.jpg`;
 };
 
 
