@@ -1,119 +1,105 @@
+
 "use client";
 
 import { useState, useEffect } from 'react';
 import { mockUserProfile } from '@/lib/mock-data';
 import type { UserProfile as UserProfileType } from '@/types';
 import Image from 'next/image';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Edit3, Save, Mail, MapPinIcon, UserCircle } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { ChevronRight, Gift, HelpCircle, LogOut, Bell, CreditCard, MapPin, UserCircle2 } from 'lucide-react';
+import Link from 'next/link';
+import { Separator } from '@/components/ui/separator';
+
+interface ProfileMenuItemProps {
+  icon: React.ElementType;
+  label: string;
+  description?: string;
+  href: string;
+  isExternal?: boolean;
+}
+
+const ProfileMenuItem: React.FC<ProfileMenuItemProps> = ({ icon: Icon, label, description, href, isExternal }) => (
+  <Link href={href} target={isExternal ? '_blank' : '_self'} rel={isExternal ? 'noopener noreferrer' : ''} className="block">
+    <div className="flex items-center py-4 px-1 hover:bg-muted/50 rounded-md transition-colors">
+      <Icon className="h-6 w-6 mr-4 text-primary" />
+      <div className="flex-grow">
+        <p className="font-medium text-foreground">{label}</p>
+        {description && <p className="text-sm text-muted-foreground">{description}</p>}
+      </div>
+      <ChevronRight className="h-5 w-5 text-muted-foreground" />
+    </div>
+  </Link>
+);
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState<UserProfileType | null>(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState<Partial<UserProfileType>>({});
-  const { toast } = useToast();
 
   useEffect(() => {
-    // Simulate fetching profile data
     setProfile(mockUserProfile);
-    setFormData(mockUserProfile);
   }, []);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleEditToggle = () => {
-    if (isEditing) {
-      // Save logic (mocked)
-      setProfile(prev => ({ ...prev!, ...formData }));
-      toast({
-        title: "Profile Updated",
-        description: "Your profile information has been saved.",
-        variant: "default",
-      });
-    } else {
-      // Reset form data to current profile when entering edit mode
-      setFormData(profile || {});
-    }
-    setIsEditing(!isEditing);
-  };
 
   if (!profile) {
     return <div className="text-center py-10">Loading profile...</div>;
   }
 
   return (
-    <div className="max-w-2xl mx-auto space-y-8">
-      <section className="text-center py-8">
-        <h1 className="text-4xl font-headline font-bold text-primary mb-2">Your Profile</h1>
-        <p className="text-lg text-foreground/80">Manage your account details and preferences.</p>
-      </section>
+    <div className="pb-4">
+      <header className="flex items-center space-x-4 py-4 mb-4">
+        <Avatar className="w-16 h-16 border-2 border-primary">
+          <AvatarImage src={profile.profilePictureUrl} alt={profile.name} data-ai-hint={profile.dataAiHint} />
+          <AvatarFallback className="text-2xl bg-muted text-muted-foreground">
+            {profile.name.split(' ').map(n => n[0]).join('')}
+          </AvatarFallback>
+        </Avatar>
+        <div>
+          <h1 className="text-xl font-bold text-foreground">{profile.name}</h1>
+          <h2 className="text-lg text-muted-foreground">Account</h2>
+        </div>
+      </header>
 
-      <Card className="shadow-xl rounded-lg">
-        <CardHeader className="items-center text-center">
-          <Avatar className="w-32 h-32 mb-4 border-4 border-primary shadow-md">
-            <AvatarImage src={formData.profilePictureUrl || profile.profilePictureUrl} alt={profile.name} data-ai-hint={profile.dataAiHint}/>
-            <AvatarFallback className="text-4xl bg-muted text-muted-foreground">
-              {profile.name.split(' ').map(n => n[0]).join('')}
-            </AvatarFallback>
-          </Avatar>
-          {isEditing && (
-             <div className="w-full max-w-sm">
-                <Label htmlFor="profilePictureUrl">Profile Picture URL</Label>
-                <Input 
-                    id="profilePictureUrl" 
-                    name="profilePictureUrl" 
-                    value={formData.profilePictureUrl || ''} 
-                    onChange={handleInputChange}
-                    className="mt-1 rounded-md"
-                />
-             </div>
-          )}
-          <CardTitle className="text-3xl font-headline mt-2">{isEditing ? formData.name : profile.name}</CardTitle>
-          <CardDescription>{isEditing ? formData.email : profile.email}</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6 p-6">
-          <div className="space-y-4">
-            <div>
-              <Label htmlFor="name" className="font-semibold flex items-center"><UserCircle className="w-5 h-5 mr-2 text-primary"/> Full Name</Label>
-              {isEditing ? (
-                <Input id="name" name="name" value={formData.name || ''} onChange={handleInputChange} className="mt-1 rounded-md" />
-              ) : (
-                <p className="text-muted-foreground mt-1 p-2 bg-muted/50 rounded-md">{profile.name}</p>
-              )}
-            </div>
-            <div>
-              <Label htmlFor="email" className="font-semibold flex items-center"><Mail className="w-5 h-5 mr-2 text-primary"/> Email Address</Label>
-              {isEditing ? (
-                <Input id="email" name="email" type="email" value={formData.email || ''} onChange={handleInputChange} className="mt-1 rounded-md" />
-              ) : (
-                <p className="text-muted-foreground mt-1 p-2 bg-muted/50 rounded-md">{profile.email}</p>
-              )}
-            </div>
-            <div>
-              <Label htmlFor="address" className="font-semibold flex items-center"><MapPinIcon className="w-5 h-5 mr-2 text-primary"/> Address</Label>
-              {isEditing ? (
-                <Input id="address" name="address" value={formData.address || ''} onChange={handleInputChange} className="mt-1 rounded-md" />
-              ) : (
-                <p className="text-muted-foreground mt-1 p-2 bg-muted/50 rounded-md">{profile.address || 'Not provided'}</p>
-              )}
-            </div>
-          </div>
-        </CardContent>
-        <CardFooter className="p-6">
-          <Button onClick={handleEditToggle} className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-md">
-            {isEditing ? <Save className="mr-2 h-5 w-5" /> : <Edit3 className="mr-2 h-5 w-5" />}
-            {isEditing ? 'Save Changes' : 'Edit Profile'}
-          </Button>
-        </CardFooter>
-      </Card>
+      <div className="space-y-2">
+        <ProfileMenuItem icon={HelpCircle} label="Get Help" href="/contact" />
+        <ProfileMenuItem icon={Gift} label="Gift Card" href="/giftcard" /> {/* Assuming a /giftcard page */}
+      </div>
+
+      <Separator className="my-6" />
+
+      <h3 className="text-lg font-semibold text-foreground mb-2">Account Settings</h3>
+      <div className="space-y-1 bg-card rounded-lg border p-2">
+        <ProfileMenuItem 
+          icon={UserCircle2} 
+          label="Manage Account" 
+          description="Update information and manage your account" 
+          href="/profile/edit"  // Assuming an edit page
+        />
+        <Separator className="my-1 mx-2 bg-border/50" />
+        <ProfileMenuItem 
+          icon={CreditCard} 
+          label="Payment" 
+          description="Manage payment methods and credits" 
+          href="/profile/payment" 
+        />
+        <Separator className="my-1 mx-2 bg-border/50" />
+        <ProfileMenuItem 
+          icon={MapPin} 
+          label="Address" 
+          description="Add or remove a delivery address" 
+          href="/profile/address" 
+        />
+        <Separator className="my-1 mx-2 bg-border/50" />
+        <ProfileMenuItem 
+          icon={Bell} 
+          label="Notifications" 
+          description="Manage delivery and promotional notifications" 
+          href="/profile/notifications" 
+        />
+      </div>
+
+      <Button variant="ghost" className="w-full justify-start text-destructive hover:text-destructive hover:bg-destructive/10 mt-8 py-4 px-1 text-base">
+        <LogOut className="h-6 w-6 mr-4" />
+        Log Out
+      </Button>
     </div>
   );
 }

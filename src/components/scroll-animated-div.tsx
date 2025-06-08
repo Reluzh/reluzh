@@ -1,4 +1,9 @@
+
 "use client";
+
+// This component is not actively used in the new design for the main pages.
+// It can be kept for potential use on other pages or removed if no longer needed.
+// For now, keeping the code as is.
 
 import { useRef, useEffect, useState } from 'react';
 import type { PropsWithChildren } from 'react';
@@ -32,11 +37,11 @@ const ScrollAnimatedDiv: React.FC<ScrollAnimatedDivProps> = ({
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsInView(true);
-            if (triggerOnce && element) { // check element again for safety
+            if (triggerOnce && element) { 
               observer.unobserve(element);
             }
           } else if (!triggerOnce) {
-            // setIsInView(false); // Optional: Reset if it scrolls out of view and triggerOnce is false
+            // setIsInView(false); 
           }
         });
       },
@@ -56,8 +61,8 @@ const ScrollAnimatedDiv: React.FC<ScrollAnimatedDivProps> = ({
     <div
       ref={ref}
       className={cn(
-        !isInView && 'opacity-0', // Keep it hidden if not in view or before animation starts
-        isInView && animationClass, // Apply animation class when in view
+        !isInView && 'opacity-0', 
+        isInView && animationClass, 
         className
       )}
       style={{ animationDelay: isInView && delayMs > 0 ? `${delayMs}ms` : undefined }}

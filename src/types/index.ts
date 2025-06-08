@@ -1,7 +1,8 @@
+
 export interface Vendor {
   id: string;
   name: string;
-  type: 'Restaurant' | 'Grocery Store';
+  type: 'Restaurant' | 'Grocery Store' | 'Bakery' | 'Cafe';
   address: string;
   distance: string; // e.g., "0.5 miles"
   rating: number; // 1-5
@@ -19,18 +20,22 @@ export interface OfferItem {
   description?: string;
   imageUrl?: string;
   dataAiHint?: string;
+  itemCategory?: string; // e.g., "Popular", "New", "Chef's Choice" for restaurant items
 }
 
 export interface Listing extends Vendor {
   offers: OfferItem[];
   pickupTimes: string; // e.g., "5 PM - 7 PM"
   category?: string; // e.g. "Bakery", "Produce", "Meals"
+  ratingCount?: number;
+  priceTier?: string; // e.g., "$$"
+  prepTime?: string; // e.g., "25-35 min"
 }
 
 export interface GroceryItem extends OfferItem {
   vendorId: string;
   vendorName: string;
-  category: 'Fruits' | 'Vegetables' | 'Bakery' | 'Dairy' | 'Pantry' | 'Frozen';
+  category: 'Fruits' | 'Vegetables' | 'Bakery' | 'Dairy' | 'Pantry' | 'Frozen' | 'Drinks' | 'Snacks';
   expiryDate?: string;
 }
 
