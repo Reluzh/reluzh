@@ -2,39 +2,83 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { useState } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
+import { useAuth } from '@/context/AuthContext';
+import { useToast } from "@/hooks/use-toast";
 
-// SVG for Google Icon
 const GoogleIcon = () => (
-  <svg className="mr-2 h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
-    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-    <path d="M1 1h22v22H1z" fill="none" />
+  <svg className="mr-2 h-5 w-5" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <title>Google icon</title>
+    <path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.386-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.85l3.25-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z" fill="#4285F4"/>
   </svg>
 );
 
-// SVG for Apple Icon
 const AppleIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" className="mr-2 h-5 w-5" fill="currentColor">
-    <path d="M1377 962q0-14-2-42.5t-1.5-53.5-5.5-58.5-13-55-25.5-43.5-43.5-25-68-1-94 30.5-107.5 70-107.5 107.5-94 143-68 176.5q-30 128-30 242 0 189 93 300t247 111q51 0 100-14.5t89-42.5q41 23 90 42.5t99 14.5q151 0 245-111t94-300q0-158-50-256-11-18-11-30zm-550 545q-119 0-193.5-80t-74.5-199q0-120 73.5-199t192.5-79q29 0 52 6.5t52 21.5l6 2q1 1 1.5 2t1.5 2.5.5.5q-206 108-206 345zm393-155q0 115-62 179-65 68-173 68-47 0-93.5-20.5t-83.5-57.5q-3 1-8.5 1.5t-10 1-12 .5q-136 0-223-89.5t-87-221.5q0-129 82-218.5t204-89.5q43 0 87.5 16t78.5 46q31-25 77-46t91-16q117 0 180.5 68.5t63.5 181.5z"/>
+  <svg className="mr-2 h-5 w-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18.035 13.872C18.015 12.232 19.225 11.082 19.265 11.052C17.955 9.102 16.435 8.912 15.935 8.902C14.615 8.842 13.475 9.662 12.815 9.662C12.145 9.662 10.795 8.822 9.40502 8.882C8.01502 8.932 6.80502 9.592 6.00502 10.632C4.26502 12.952 4.50502 16.402 5.96502 18.582C6.69502 19.682 7.60502 20.982 8.87502 20.982C10.095 20.982 10.465 20.322 12.025 20.322C13.565 20.322 13.965 20.982 15.205 20.962C16.475 20.952 17.295 19.762 18.005 18.652C18.205 18.342 18.385 18.002 18.555 17.652C17.305 17.062 16.675 15.472 16.675 13.932C16.675 13.112 16.895 12.342 17.285 11.672C17.365 11.742 18.065 12.182 18.035 13.872ZM14.125 6.062C14.675 5.442 15.035 4.582 14.955 3.742C14.135 3.852 13.235 4.412 12.655 5.012C12.155 5.552 11.725 6.452 11.835 7.302C12.725 7.232 13.545 6.692 14.125 6.062Z"/>
   </svg>
 );
 
 export default function LoginPage() {
+  const { user, loginWithEmail, signInWithGoogle, loading: authLoading } = useAuth();
+  const router = useRouter();
+  const { toast } = useToast();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    if (user) {
+      router.push('/profile');
+    }
+  }, [user, router]);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Login attempt with:", { email, password });
-    // Here you would typically handle actual login logic
+    if (authLoading || isSubmitting) return;
+    setIsSubmitting(true);
+    try {
+      await loginWithEmail(email, password);
+      toast({ title: "Logged in successfully!" });
+      // router.push('/profile'); // Let useEffect handle redirect
+    } catch (error: any) {
+      console.error("Login error:", error);
+      toast({ title: "Login Failed", description: error.message || "An unknown error occurred. Please try again.", variant: "destructive" });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  const handleGoogleSignIn = async () => {
+    if (authLoading || isSubmitting) return;
+    setIsSubmitting(true);
+    try {
+      await signInWithGoogle();
+      toast({ title: "Logged in with Google successfully!" });
+      // router.push('/profile'); // Let useEffect handle redirect
+    } catch (error: any) {
+      console.error("Google Sign-in error:", error);
+      toast({ title: "Google Sign-in Failed", description: error.message || "An unknown error occurred. Please try again.", variant: "destructive" });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (authLoading && !user) {
+    return <div className="flex justify-center items-center min-h-[calc(100vh-12rem)]"><p>Loading...</p></div>;
+  }
+  
+  // If user is already logged in (e.g. navigating back to this page), useEffect will redirect.
+  // Return null or a minimal loader to prevent flash of login form.
+  if (user) { 
+    return <div className="flex justify-center items-center min-h-[calc(100vh-12rem)]"><p>Redirecting...</p></div>;
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[calc(100vh-12rem)] py-8 px-4">
@@ -45,11 +89,11 @@ export default function LoginPage() {
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-3">
-            <Button variant="outline" className="w-full">
+            <Button variant="outline" className="w-full" onClick={handleGoogleSignIn} disabled={authLoading || isSubmitting}>
               <GoogleIcon />
               Log in with Google
             </Button>
-            <Button variant="outline" className="w-full">
+            <Button variant="outline" className="w-full" disabled={true} title="Apple Sign-In coming soon!">
               <AppleIcon />
               Log in with Apple
             </Button>
@@ -77,6 +121,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="mt-1"
+                disabled={authLoading || isSubmitting}
               />
             </div>
             <div>
@@ -94,10 +139,11 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="mt-1"
+                disabled={authLoading || isSubmitting}
               />
             </div>
-            <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-              Log In
+            <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" disabled={authLoading || isSubmitting}>
+              {isSubmitting ? 'Logging In...' : 'Log In'}
             </Button>
           </form>
 
