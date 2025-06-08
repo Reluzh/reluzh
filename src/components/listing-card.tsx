@@ -16,14 +16,16 @@ const ListingCard: React.FC<ListingCardProps> = ({ listing }) => {
     <Card className="overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 rounded-xl flex flex-col h-full border">
       <Link href={`/listing/${listing.id}`} className="block group">
         <div className="relative h-40 w-full">
-          <Image
-            src={listing.imageUrl}
-            alt={listing.name}
-            layout="fill"
-            objectFit="cover"
-            className="group-hover:scale-105 transition-transform duration-300"
-          />
-           <Badge variant={listing.type === 'Restaurant' || listing.type === 'Cafe' || listing.type === 'Bakery' ? 'secondary' : 'outline'} className="absolute top-2 left-2 capitalize">
+          {listing.imageUrl && (
+            <Image
+              src={listing.imageUrl}
+              alt={listing.name}
+              layout="fill"
+              objectFit="cover"
+              className="group-hover:scale-105 transition-transform duration-300"
+            />
+          )}
+           <Badge variant={listing.type === 'Restaurant' || listing.type === 'Cafe' || listing.type === 'Bakery' || listing.type === 'Grocery Store' ? 'secondary' : 'outline'} className="absolute top-2 left-2 capitalize">
             {listing.type}
           </Badge>
         </div>
