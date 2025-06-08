@@ -9,8 +9,7 @@ import { Filter, Search, MapPin,SlidersHorizontal } from 'lucide-react';
 export default function HomePage() {
   return (
     <div className="space-y-6">
-      <header className="py-2">
-        {/* Simplified header, design for home page list wasn't provided, so keeping it functional */}
+      <header className="py-2 text-center"> {/* Added text-center */}
         <h1 className="text-2xl font-bold text-foreground">Discover Deals</h1>
       </header>
 
@@ -20,7 +19,6 @@ export default function HomePage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               <Input 
                 type="search" 
-                placeholder="Rechercher restaurants, articles..." 
                 placeholder="Search restaurants, items..."
                 className="w-full pl-10 pr-4 py-3 rounded-lg border bg-card focus-visible:ring-primary text-base"
               />
@@ -29,8 +27,7 @@ export default function HomePage() {
               <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               <Input 
                 type="text" 
-                placeholder="Casablanca, Maroc" 
-                placeholder="Casablanca, Morocco"
+                placeholder="Casablanca, Maroc"
                 className="w-full pl-10 pr-4 py-3 rounded-lg border bg-card focus-visible:ring-primary text-base sm:min-w-[180px]"
               />
             </div>
@@ -50,7 +47,7 @@ export default function HomePage() {
             ))}
           </div>
         ) : (
-            <p className="text-center text-muted-foreground py-8">No deals found. Try adjusting your search or location!</p>
+            <p className="text-center text-muted-foreground py-8">No listings found. Try adjusting your search or location!</p>
         )}
       </section>
     </div>

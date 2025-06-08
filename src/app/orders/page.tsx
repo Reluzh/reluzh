@@ -5,7 +5,7 @@ import { ClipboardList } from "lucide-react";
 export default function OrdersPage() {
   return (
     <div className="space-y-6">
-      <header className="py-4 flex items-center justify-between">
+      <header className="py-4 text-center"> {/* Updated classes */}
         <h1 className="text-2xl font-bold text-foreground">My Orders</h1>
       </header>
       <Card className="text-center">

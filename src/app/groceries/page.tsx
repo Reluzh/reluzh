@@ -50,8 +50,11 @@ export default function GroceriesPage() {
   return (
     <div className="space-y-6">
       <header className="flex items-center justify-between py-2">
-        <h1 className="text-2xl font-bold text-foreground">Groceries</h1>
-        <Button variant="ghost" size="icon">
+        <div className="w-10" /> {/* Spacer for the button on the right */}
+        <div className="flex-grow text-center">
+          <h1 className="text-2xl font-bold text-foreground">Groceries</h1>
+        </div>
+        <Button variant="ghost" size="icon"> {/* This button is w-10 h-10 due to size="icon" */}
           <ShoppingCart className="h-6 w-6" />
           <span className="sr-only">Cart</span>
         </Button>
