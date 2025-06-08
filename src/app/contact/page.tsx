@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, MessageSquareText, Send, Phone, MapPin } from "lucide-react"; // Changed MessageSquare to MessageSquareText for distinction
+import { Mail, MessageSquareText, Send, Phone, MapPin } from "lucide-react"; 
 import { useState } from "react";
 
 export default function ContactPage() {
@@ -22,8 +22,8 @@ export default function ContactPage() {
     e.preventDefault();
     console.log("Form submitted:", formData);
     toast({
-      title: "Message Sent!",
-      description: "Thanks for reaching out. We'll get back to you soon.",
+      title: "Message Envoyé !",
+      description: "Merci de nous avoir contactés. Nous vous répondrons bientôt.",
     });
     setFormData({ name: '', email: '', subject: '', message: '' }); 
   };
@@ -31,9 +31,9 @@ export default function ContactPage() {
   return (
     <div className="max-w-3xl mx-auto space-y-8">
       <header className="text-center py-6">
-        <h1 className="text-3xl font-bold text-primary mb-3">Get In Touch</h1>
+        <h1 className="text-3xl font-bold text-primary mb-3">Contactez-Nous</h1>
         <p className="text-lg text-foreground/80 leading-relaxed">
-          Have questions, feedback, or just want to say hello? We'd love to hear from you!
+          Des questions, des commentaires, ou juste envie de dire bonjour ? Nous aimerions avoir de vos nouvelles !
         </p>
       </header>
 
@@ -41,30 +41,30 @@ export default function ContactPage() {
         <Card className="shadow-md rounded-lg border">
           <CardHeader>
             <CardTitle className="text-xl font-semibold text-primary flex items-center">
-              <MessageSquareText className="w-5 h-5 mr-2.5 text-accent" /> Send Us a Message
+              <MessageSquareText className="w-5 h-5 mr-2.5 text-accent" /> Envoyez-nous un Message
             </CardTitle>
-            <CardDescription className="text-sm">Fill out the form below and we'll respond as soon as possible.</CardDescription>
+            <CardDescription className="text-sm">Remplissez le formulaire ci-dessous et nous vous répondrons dès que possible.</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <Label htmlFor="name" className="text-xs">Full Name</Label>
-                <Input id="name" type="text" placeholder="Your Name" value={formData.name} onChange={handleChange} required className="mt-1 rounded-md bg-card" />
+                <Label htmlFor="name" className="text-xs">Nom Complet</Label>
+                <Input id="name" type="text" placeholder="Votre Nom" value={formData.name} onChange={handleChange} required className="mt-1 rounded-md bg-card" />
               </div>
               <div>
-                <Label htmlFor="email" className="text-xs">Email Address</Label>
-                <Input id="email" type="email" placeholder="your@email.com" value={formData.email} onChange={handleChange} required className="mt-1 rounded-md bg-card" />
+                <Label htmlFor="email" className="text-xs">Adresse E-mail</Label>
+                <Input id="email" type="email" placeholder="votre@email.com" value={formData.email} onChange={handleChange} required className="mt-1 rounded-md bg-card" />
               </div>
               <div>
-                <Label htmlFor="subject" className="text-xs">Subject</Label>
-                <Input id="subject" type="text" placeholder="Regarding..." value={formData.subject} onChange={handleChange} required className="mt-1 rounded-md bg-card" />
+                <Label htmlFor="subject" className="text-xs">Sujet</Label>
+                <Input id="subject" type="text" placeholder="Concernant..." value={formData.subject} onChange={handleChange} required className="mt-1 rounded-md bg-card" />
               </div>
               <div>
                 <Label htmlFor="message" className="text-xs">Message</Label>
-                <Textarea id="message" placeholder="Your message here..." value={formData.message} onChange={handleChange} required rows={4} className="mt-1 rounded-md bg-card" />
+                <Textarea id="message" placeholder="Votre message ici..." value={formData.message} onChange={handleChange} required rows={4} className="mt-1 rounded-md bg-card" />
               </div>
               <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-md">
-                <Send className="w-4 h-4 mr-2" /> Send Message
+                <Send className="w-4 h-4 mr-2" /> Envoyer le Message
               </Button>
             </form>
           </CardContent>
@@ -72,35 +72,35 @@ export default function ContactPage() {
 
         <Card className="shadow-md rounded-lg border">
           <CardHeader>
-            <CardTitle className="text-xl font-semibold text-primary">Contact Information</CardTitle>
-            <CardDescription className="text-sm">Other ways to reach us or find information.</CardDescription>
+            <CardTitle className="text-xl font-semibold text-primary">Informations de Contact</CardTitle>
+            <CardDescription className="text-sm">Autres moyens de nous joindre ou de trouver des informations.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-5 text-sm text-muted-foreground">
             <div className="flex items-start">
               <Mail className="w-5 h-5 mr-3 mt-0.5 text-accent shrink-0" />
               <div>
-                <h4 className="font-medium text-foreground">Email Us</h4>
-                <a href="mailto:support@reboxit.com" className="hover:text-primary">support@reboxit.com</a>
+                <h4 className="font-medium text-foreground">Envoyez-nous un E-mail</h4>
+                <a href="mailto:contact@reboxit.ma" className="hover:text-primary">contact@reboxit.ma</a>
               </div>
             </div>
             <div className="flex items-start">
               <Phone className="w-5 h-5 mr-3 mt-0.5 text-accent shrink-0" />
               <div>
-                <h4 className="font-medium text-foreground">Call Us (Support: 9am-5pm)</h4>
-                <p>+1 (555) 123-4567</p>
+                <h4 className="font-medium text-foreground">Appelez-nous (Support: 9h-17h)</h4>
+                <p>+212 522 12 34 56</p>
               </div>
             </div>
             <div className="flex items-start">
               <MapPin className="w-5 h-5 mr-3 mt-0.5 text-accent shrink-0" />
               <div>
-                <h4 className="font-medium text-foreground">Our Office</h4>
-                <p>100 Eco Lane, Green City, GC 54321</p>
+                <h4 className="font-medium text-foreground">Notre Bureau</h4>
+                <p>Technopark, Route de Nouaceur, Casablanca, Maroc</p>
               </div>
             </div>
             <div>
-              <h4 className="font-medium text-foreground mb-1.5">Frequently Asked Questions</h4>
+              <h4 className="font-medium text-foreground mb-1.5">Questions Fréquemment Posées</h4>
               <Button variant="outline" size="sm" asChild className="rounded-md bg-card">
-                <a href="/faq">Visit FAQ Page</a>
+                <a href="/faq">Visiter la Page FAQ</a>
               </Button>
             </div>
           </CardContent>
@@ -109,3 +109,5 @@ export default function ContactPage() {
     </div>
   );
 }
+
+    

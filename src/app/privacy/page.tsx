@@ -1,16 +1,16 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ShieldCheck, LockKeyhole } from "lucide-react"; // Changed Lock to LockKeyhole
+import { ShieldCheck, LockKeyhole } from "lucide-react"; 
 
 export default function PrivacyPage() {
-  const lastUpdated = "July 28, 2024"; 
+  const lastUpdated = "28 Juillet 2024"; 
 
   return (
     <div className="max-w-3xl mx-auto space-y-8">
       <header className="text-center py-6">
         <ShieldCheck className="w-12 h-12 mx-auto mb-3 text-primary" />
-        <h1 className="text-3xl font-bold text-primary mb-2">Privacy Policy</h1>
-        <p className="text-sm text-muted-foreground">Last Updated: {lastUpdated}</p>
+        <h1 className="text-3xl font-bold text-primary mb-2">Politique de Confidentialité</h1>
+        <p className="text-sm text-muted-foreground">Dernière mise à jour : {lastUpdated}</p>
       </header>
 
       <Card className="shadow-md rounded-lg border">
@@ -18,35 +18,35 @@ export default function PrivacyPage() {
           <CardTitle className="text-xl font-semibold text-primary">1. Introduction</CardTitle>
         </CardHeader>
         <CardContent className="text-muted-foreground space-y-3 text-sm">
-          <p>Welcome to ReboxIt ("we," "our," or "us"). We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy notice, or our practices with regards to your personal information, please contact us at privacy@reboxit.com.</p>
-          <p>This privacy notice describes how we might use your information if you visit our website at reboxit.com, use our mobile application, or engage with us in other related ways ― including any sales, marketing, or events.</p>
+          <p>Bienvenue chez ReboxIt ("nous", "notre", ou "nos"). Nous nous engageons à protéger vos informations personnelles et votre droit à la vie privée. Si vous avez des questions ou des préoccupations concernant cet avis de confidentialité, ou nos pratiques concernant vos informations personnelles, veuillez nous contacter à privacy@reboxit.ma.</p>
+          <p>Cet avis de confidentialité décrit comment nous pourrions utiliser vos informations si vous visitez notre site web à reboxit.ma, utilisez notre application mobile, ou interagissez avec nous d'autres manières connexes - y compris les ventes, le marketing ou les événements.</p>
         </CardContent>
       </Card>
 
       <Card className="shadow-md rounded-lg border">
         <CardHeader>
-          <CardTitle className="text-xl font-semibold text-primary">2. Information We Collect</CardTitle>
+          <CardTitle className="text-xl font-semibold text-primary">2. Informations que Nous Collectons</CardTitle>
         </CardHeader>
         <CardContent className="text-muted-foreground space-y-3 text-sm">
-          <p><strong>Personal information you disclose to us:</strong> We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us.</p>
-          <p>The personal information that we collect depends on the context of your interactions with us and the Services, the choices you make, and the products and features you use. The personal information we collect may include the following: name, email address, phone number, address, payment information, and other similar information.</p>
-          <p><strong>Information automatically collected:</strong> We automatically collect certain information when you visit, use, or navigate the Services. This information does not reveal your specific identity (like your name or contact information) but may include device and usage information, such as your IP address, browser and device characteristics, operating system, language preferences, referring URLs, device name, country, location, information about how and when you use our Services, and other technical information.</p>
+          <p><strong>Informations personnelles que vous nous divulguez :</strong> Nous collectons les informations personnelles que vous nous fournissez volontairement lorsque vous vous inscrivez aux Services, exprimez un intérêt à obtenir des informations sur nous ou nos produits et Services, lorsque vous participez à des activités sur les Services, ou autrement lorsque vous nous contactez.</p>
+          <p>Les informations personnelles que nous collectons dépendent du contexte de vos interactions avec nous et les Services, des choix que vous faites, et des produits et fonctionnalités que vous utilisez. Les informations personnelles que nous collectons peuvent inclure ce qui suit : nom, adresse e-mail, numéro de téléphone, adresse, informations de paiement, et autres informations similaires.</p>
+          <p><strong>Informations collectées automatiquement :</strong> Nous collectons automatiquement certaines informations lorsque vous visitez, utilisez ou naviguez sur les Services. Ces informations ne révèlent pas votre identité spécifique (comme votre nom ou vos coordonnées) mais peuvent inclure des informations sur l'appareil et l'utilisation, telles que votre adresse IP, les caractéristiques de votre navigateur et de votre appareil, votre système d'exploitation, vos préférences linguistiques, les URL de référence, le nom de l'appareil, le pays, l'emplacement, des informations sur comment et quand vous utilisez nos Services, et d'autres informations techniques.</p>
         </CardContent>
       </Card>
       
       <Card className="shadow-md rounded-lg border">
         <CardHeader>
-          <CardTitle className="text-xl font-semibold text-primary">3. How We Use Your Information</CardTitle>
+          <CardTitle className="text-xl font-semibold text-primary">3. Comment Nous Utilisons Vos Informations</CardTitle>
         </CardHeader>
         <CardContent className="text-muted-foreground space-y-3 text-sm">
-          <p>We use personal information collected via our Services for a variety of business purposes described below. We process your personal information for these purposes in reliance on our legitimate business interests, in order to enter into or perform a contract with you, with your consent, and/or for compliance with our legal obligations.</p>
+          <p>Nous utilisons les informations personnelles collectées via nos Services à diverses fins commerciales décrites ci-dessous. Nous traitons vos informations personnelles à ces fins en nous fondant sur nos intérêts commerciaux légitimes, afin de conclure ou d'exécuter un contrat avec vous, avec votre consentement, et/ou pour nous conformer à nos obligations légales.</p>
           <ul className="list-disc list-inside space-y-1 pl-4">
-            <li>To facilitate account creation and logon process.</li>
-            <li>To post testimonials (with your consent).</li>
-            <li>To manage user accounts.</li>
-            <li>To send administrative information to you.</li>
-            <li>To protect our Services (e.g., for fraud monitoring and prevention).</li>
-            <li>To enforce our terms, conditions and policies for business purposes, to comply with legal and regulatory requirements or in connection with our contract.</li>
+            <li>Pour faciliter la création de compte et le processus de connexion.</li>
+            <li>Pour publier des témoignages (avec votre consentement).</li>
+            <li>Pour gérer les comptes utilisateurs.</li>
+            <li>Pour vous envoyer des informations administratives.</li>
+            <li>Pour protéger nos Services (par exemple, pour la surveillance et la prévention de la fraude).</li>
+            <li>Pour faire respecter nos termes, conditions et politiques à des fins commerciales, pour nous conformer aux exigences légales et réglementaires ou en relation avec notre contrat.</li>
           </ul>
         </CardContent>
       </Card>
@@ -54,37 +54,39 @@ export default function PrivacyPage() {
       <Card className="shadow-md rounded-lg border">
         <CardHeader>
           <CardTitle className="text-xl font-semibold text-primary flex items-center">
-            <LockKeyhole className="w-5 h-5 mr-2 text-accent" /> Data Security
+            <LockKeyhole className="w-5 h-5 mr-2 text-accent" /> Sécurité des Données
           </CardTitle>
         </CardHeader>
         <CardContent className="text-muted-foreground text-sm">
-          <p>We have implemented appropriate technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards and efforts to secure your information, no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information.</p>
+          <p>Nous avons mis en œuvre des mesures de sécurité techniques et organisationnelles appropriées conçues pour protéger la sécurité de toutes les informations personnelles que nous traitons. Cependant, malgré nos mesures de protection et nos efforts pour sécuriser vos informations, aucune transmission électronique sur Internet ou technologie de stockage d'informations ne peut être garantie à 100 %, nous ne pouvons donc pas promettre ou garantir que des pirates, des cybercriminels ou d'autres tiers non autorisés ne pourront pas déjouer notre sécurité et collecter, accéder, voler ou modifier incorrectement vos informations.</p>
         </CardContent>
       </Card>
 
       <Card className="shadow-md rounded-lg border">
         <CardHeader>
-          <CardTitle className="text-xl font-semibold text-primary">4. Your Privacy Rights</CardTitle>
+          <CardTitle className="text-xl font-semibold text-primary">4. Vos Droits à la Confidentialité</CardTitle>
         </CardHeader>
         <CardContent className="text-muted-foreground text-sm">
-          <p>In some regions (like the EEA, UK, and Canada), you have certain rights under applicable data protection laws. These may include the right (i) to request access and obtain a copy of your personal information, (ii) to request rectification or erasure; (iii) to restrict the processing of your personal information; and (iv) if applicable, to data portability. In certain circumstances, you may also have the right to object to the processing of your personal information. To make such a request, please use the contact details provided below.</p>
+          <p>Dans certaines régions (comme l'EEE, le Royaume-Uni et le Canada), vous disposez de certains droits en vertu des lois applicables sur la protection des données. Ceux-ci peuvent inclure le droit (i) de demander l'accès et d'obtenir une copie de vos informations personnelles, (ii) de demander la rectification ou l'effacement ; (iii) de restreindre le traitement de vos informations personnelles ; et (iv) le cas échéant, à la portabilité des données. Dans certaines circonstances, vous pouvez également avoir le droit de vous opposer au traitement de vos informations personnelles. Pour faire une telle demande, veuillez utiliser les coordonnées fournies ci-dessous.</p>
         </CardContent>
       </Card>
 
       <Card className="shadow-md rounded-lg border">
         <CardHeader>
-          <CardTitle className="text-xl font-semibold text-primary">5. Contact Us</CardTitle>
+          <CardTitle className="text-xl font-semibold text-primary">5. Contactez-Nous</CardTitle>
         </CardHeader>
         <CardContent className="text-muted-foreground text-sm">
-          <p>If you have questions or comments about this notice, you may email us at privacy@reboxit.com or by post to:</p>
+          <p>Si vous avez des questions ou des commentaires sur cet avis, vous pouvez nous envoyer un e-mail à privacy@reboxit.ma ou par courrier à :</p>
           <p className="mt-2">
-            ReboxIt Privacy Team<br />
-            100 Eco Lane<br />
-            Green City, GC 54321<br />
-            United States
+            Équipe de Confidentialité ReboxIt<br />
+            Technopark, Route de Nouaceur<br />
+            Casablanca<br />
+            Maroc
           </p>
         </CardContent>
       </Card>
     </div>
   );
 }
+
+    

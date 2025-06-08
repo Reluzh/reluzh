@@ -11,7 +11,7 @@ interface GroceryItemCardProps {
 }
 
 const GroceryItemCard: React.FC<GroceryItemCardProps> = ({ item }) => {
-  const discountPercentage = Math.round(((item.originalPrice - item.discountedPrice) / item.originalPrice) * 100);
+  const discountPercentage = item.originalPrice > 0 ? Math.round(((item.originalPrice - item.discountedPrice) / item.originalPrice) * 100) : 0;
 
   return (
     <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg flex flex-col">
@@ -33,14 +33,16 @@ const GroceryItemCard: React.FC<GroceryItemCardProps> = ({ item }) => {
       </CardHeader>
       <CardContent className="space-y-2 flex-grow pb-2">
         <div className="flex justify-between items-baseline">
-          <p className="text-2xl font-bold text-accent">${item.discountedPrice.toFixed(2)}</p>
-          <p className="text-sm text-muted-foreground line-through">${item.originalPrice.toFixed(2)}</p>
+          <p className="text-2xl font-bold text-accent">{item.discountedPrice.toFixed(0)} MAD</p>
+          <p className="text-sm text-muted-foreground line-through">{item.originalPrice.toFixed(0)} MAD</p>
         </div>
-        <Badge variant="destructive" className="text-xs">
-          {discountPercentage}% OFF
-        </Badge>
+        {discountPercentage > 0 && 
+            <Badge variant="destructive" className="text-xs">
+            {discountPercentage}% DE RÉDUCTION
+            </Badge>
+        }
         <p className="text-sm text-muted-foreground flex items-center">
-          <Tag className="h-4 w-4 mr-1" /> Category: {item.category}
+          <Tag className="h-4 w-4 mr-1" /> Catégorie: {item.category}
         </p>
         {item.expiryDate && (
           <p className="text-sm text-muted-foreground flex items-center">
@@ -51,7 +53,7 @@ const GroceryItemCard: React.FC<GroceryItemCardProps> = ({ item }) => {
       </CardContent>
       <CardFooter>
         <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-md">
-          <ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart
+          <ShoppingCart className="mr-2 h-4 w-4" /> Ajouter au Panier
         </Button>
       </CardFooter>
     </Card>
@@ -59,3 +61,5 @@ const GroceryItemCard: React.FC<GroceryItemCardProps> = ({ item }) => {
 };
 
 export default GroceryItemCard;
+
+    

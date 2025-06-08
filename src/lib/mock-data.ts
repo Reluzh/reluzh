@@ -3,14 +3,14 @@ import type { Listing, GroceryItem, UserProfile } from '@/types';
 
 let imageCounter = 1; 
 
-export function assignImagePath(originalPath?: string): string {
-  // If originalPath is provided, use it directly
-  if (originalPath) {
-    return `/assets/${originalPath}`;
+export function assignImagePath(originalPath?: string): string | undefined {
+  if (originalPath && originalPath.startsWith('/assets/')) {
+    return originalPath;
   }
-  // Otherwise, use the placeholder logic
-  const imageNumber = imageCounter++ % 19 + 1; // Cycle through im1.jpg to im19.jpg
-  return `/assets/im${imageNumber}.jpg`;
+  if (imageCounter > 19) return undefined; // Only 19 placeholder images
+
+  const imageNumber = imageCounter++;
+  return `/assets/im${imageNumber}.png`;
 };
 
 
@@ -19,8 +19,8 @@ export const mockListings: Listing[] = [
     id: '1',
     name: 'Green Leaf Cafe',
     type: 'Cafe',
-    address: '123 Main St, Anytown, USA',
-    distance: '0.3 miles',
+    address: '12 Rue Al Moutanabbi, Gauthier, Casablanca',
+    distance: '0.5 km',
     rating: 4.7,
     ratingCount: 215,
     priceTier: '$$',
@@ -30,18 +30,18 @@ export const mockListings: Listing[] = [
     category: 'Cafe',
     isFavorite: true,
     offers: [
-      { id: 'o1', name: 'Spaghetti Carbonara', itemCategory: 'Popular', originalPrice: 15.00, discountedPrice: 12.99, quantityLeft: 5, description: 'Creamy pasta with bacon and parmesan.', imageUrl: assignImagePath() },
-      { id: 'o2', name: 'Margherita Pizza', itemCategory: 'New', originalPrice: 18.00, discountedPrice: 14.99, quantityLeft: 10, description: 'Classic pizza with tomato, mozzarella, and basil.', imageUrl: assignImagePath() },
-      { id: 'o2b', name: 'Tiramisu', itemCategory: "Chef's Choice", originalPrice: 9.00, discountedPrice: 7.99, quantityLeft: 7, description: 'Coffee-flavored dessert with mascarpone cream.', imageUrl: assignImagePath()},
-      { id: 'o2c', name: 'Avocado Toast', itemCategory: 'Popular', originalPrice: 10.00, discountedPrice: 8.50, quantityLeft: 8, description: 'Sourdough toast with fresh avocado and seasoning.', imageUrl: assignImagePath() },
+      { id: 'o1', name: 'Spaghetti Carbonara', itemCategory: 'Popular', originalPrice: 120, discountedPrice: 99, quantityLeft: 5, description: 'Pâtes crémeuses avec bacon et parmesan.', imageUrl: assignImagePath() },
+      { id: 'o2', name: 'Pizza Margherita', itemCategory: 'New', originalPrice: 150, discountedPrice: 120, quantityLeft: 10, description: 'Pizza classique avec tomate, mozzarella et basilic.', imageUrl: assignImagePath() },
+      { id: 'o2b', name: 'Tiramisu', itemCategory: "Chef's Choice", originalPrice: 70, discountedPrice: 55, quantityLeft: 7, description: 'Dessert au café avec crème mascarpone.', imageUrl: assignImagePath()},
+      { id: 'o2c', name: 'Toast Avocat', itemCategory: 'Popular', originalPrice: 80, discountedPrice: 65, quantityLeft: 8, description: 'Pain au levain avec avocat frais et assaisonnement.', imageUrl: assignImagePath() },
     ],
   },
   {
     id: '2',
-    name: 'Harvest Grocers',
+    name: 'Marché Central Grocers',
     type: 'Grocery Store',
-    address: '456 Oak Ave, Anytown, USA',
-    distance: '1.2 miles',
+    address: 'Marché Central, Boulevard Muhammad V, Casablanca',
+    distance: '2 km',
     rating: 4.2,
     ratingCount: 180,
     priceTier: '$',
@@ -51,16 +51,16 @@ export const mockListings: Listing[] = [
     category: 'Produce',
     isFavorite: false,
     offers: [
-      { id: 'o3', name: 'Mixed Vegetable Box', originalPrice: 15.00, discountedPrice: 6.00, quantityLeft: 8, description: 'Slightly imperfect but fresh veggies.', imageUrl: assignImagePath() },
-      { id: 'o4', name: 'Overripe Fruit Bag', originalPrice: 10.00, discountedPrice: 4.00, quantityLeft: 12, description: 'Perfect for smoothies or baking.', imageUrl: assignImagePath() },
+      { id: 'o3', name: 'Panier de Légumes Mixtes', originalPrice: 100, discountedPrice: 40, quantityLeft: 8, description: 'Légumes frais légèrement imparfaits.', imageUrl: assignImagePath() },
+      { id: 'o4', name: 'Sac de Fruits Mûrs', originalPrice: 70, discountedPrice: 25, quantityLeft: 12, description: 'Parfait pour smoothies ou pâtisserie.', imageUrl: assignImagePath() },
     ],
   },
   {
     id: '3',
-    name: 'Mama Mia Pizzeria',
+    name: 'Pizzeria Bella Napoli',
     type: 'Restaurant',
-    address: '789 Pine Rd, Anytown, USA',
-    distance: '0.8 miles',
+    address: '33 Rue Allal Ben Abdellah, Quartier Art Deco, Casablanca',
+    distance: '1.3 km',
     rating: 4.8,
     ratingCount: 305,
     priceTier: '$$',
@@ -70,15 +70,15 @@ export const mockListings: Listing[] = [
     category: 'Italian',
     isFavorite: true,
     offers: [
-      { id: 'o5', name: 'End-of-Day Pizza Slices', originalPrice: 4.00, discountedPrice: 1.50, quantityLeft: 15, description: 'Assorted pizza slices.', imageUrl: assignImagePath() },
+      { id: 'o5', name: 'Parts de Pizza Fin de Journée', originalPrice: 30, discountedPrice: 10, quantityLeft: 15, description: 'Parts de pizza assorties.', imageUrl: assignImagePath() },
     ],
   },
   {
     id: '4',
-    name: 'City Bakery',
+    name: 'Boulangerie Amine',
     type: 'Bakery',
-    address: '101 Baker St, Anytown, USA',
-    distance: '2.1 miles',
+    address: '7 Angle Rue de Foucault et Rue Washington, Maârif, Casablanca',
+    distance: '3.5 km',
     rating: 4.0,
     ratingCount: 95,
     priceTier: '$',
@@ -88,23 +88,23 @@ export const mockListings: Listing[] = [
     category: 'Bakery',
     isFavorite: false,
     offers: [
-      { id: 'o6', name: 'Artisan Bread Loaves', originalPrice: 7.00, discountedPrice: 3.50, quantityLeft: 7, description: 'Freshly baked artisan bread from the morning.', imageUrl: assignImagePath() },
+      { id: 'o6', name: 'Pains Artisanaux', originalPrice: 50, discountedPrice: 25, quantityLeft: 7, description: 'Pain artisanal frais du matin.', imageUrl: assignImagePath() },
     ],
   },
 ];
 
 export const mockGroceryCategories = [
-  { id: 'cat1', name: 'Fresh Produce', imageUrl: assignImagePath() },
-  { id: 'cat2', name: 'Pantry Staples', imageUrl: assignImagePath() },
-  { id: 'cat3', name: 'Dairy & Eggs', imageUrl: assignImagePath() },
-  { id: 'cat4', name: 'Snacks', imageUrl: assignImagePath() },
+  { id: 'cat1', name: 'Fruits & Légumes Frais', imageUrl: assignImagePath() },
+  { id: 'cat2', name: 'Épicerie', imageUrl: assignImagePath() },
+  { id: 'cat3', name: 'Produits Laitiers & Oeufs', imageUrl: assignImagePath() },
+  { id: 'cat4', name: 'Snacks & Confiseries', imageUrl: assignImagePath() },
 ];
 
 export const mockPopularStores: Pick<Listing, 'id' | 'name' | 'imageUrl' | 'type'>[] = [
-  { id: 'store1', name: 'Fresh Foods Market', type: 'Grocery Store', imageUrl: assignImagePath() }, 
-  { id: 'store2', name: 'Quick Stop Groceries', type: 'Grocery Store', imageUrl: assignImagePath() },
-  { id: 'store3', name: 'Organic Oasis', type: 'Grocery Store', imageUrl: assignImagePath() },
-  { id: 'store4', name: 'Daily Essentials', type: 'Grocery Store', imageUrl: assignImagePath() },
+  { id: 'store1', name: 'Aswak Assalam', type: 'Grocery Store', imageUrl: assignImagePath() }, 
+  { id: 'store2', name: 'Carrefour Market Anfa', type: 'Grocery Store', imageUrl: assignImagePath() },
+  { id: 'store3', name: 'La Vie Claire Triangle d\'Or', type: 'Grocery Store', imageUrl: assignImagePath() },
+  { id: 'store4', name: 'BIM Sidi Moumen', type: 'Grocery Store', imageUrl: assignImagePath() },
 ];
 
 
@@ -112,54 +112,54 @@ export const mockGroceryItems: GroceryItem[] = [
   {
     id: 'g1',
     vendorId: '2',
-    vendorName: 'Harvest Grocers',
-    name: 'Organic Apples',
-    originalPrice: 3.99,
-    discountedPrice: 1.99,
+    vendorName: 'Marché Central Grocers',
+    name: 'Pommes Bio',
+    originalPrice: 30,
+    discountedPrice: 15,
     quantityLeft: 20,
     category: 'Fruits',
     imageUrl: assignImagePath(),
-    expiryDate: '3 days left',
-    description: 'A bag of slightly bruised organic apples.'
+    expiryDate: 'Reste 3 jours',
+    description: 'Un sac de pommes bio légèrement abîmées.'
   },
   {
     id: 'g2',
     vendorId: '2',
-    vendorName: 'Harvest Grocers',
-    name: 'Whole Wheat Bread',
-    originalPrice: 4.50,
-    discountedPrice: 2.00,
+    vendorName: 'Marché Central Grocers',
+    name: 'Pain Complet',
+    originalPrice: 25,
+    discountedPrice: 12,
     quantityLeft: 10,
     category: 'Bakery',
     imageUrl: assignImagePath(),
-    expiryDate: 'Best by tomorrow',
-    description: 'Fresh whole wheat bread, near expiry.'
+    expiryDate: 'À consommer de préférence avant demain',
+    description: 'Pain complet frais, proche de la date d\'expiration.'
   },
   {
     id: 'g3',
-    vendorId: 'v_corner_mart',
-    vendorName: 'Corner Mart',
-    name: 'Milk Gallon',
-    originalPrice: 3.50,
-    discountedPrice: 1.75,
+    vendorId: 'v_hanout_al_hay',
+    vendorName: 'Hanout Al Hay',
+    name: 'Lait 1L',
+    originalPrice: 12,
+    discountedPrice: 8,
     quantityLeft: 5,
     category: 'Dairy',
     imageUrl: assignImagePath(),
-    expiryDate: '2 days left',
-    description: 'Gallon of 2% milk.'
+    expiryDate: 'Reste 2 jours',
+    description: 'Brique de lait UHT 1 litre.'
   },
   {
     id: 'g4',
-    vendorId: 'v_fresh_farms',
-    vendorName: 'Fresh Farms',
-    name: 'Spinach Bunch',
-    originalPrice: 2.99,
-    discountedPrice: 1.00,
+    vendorId: 'v_mazraa_al_baraka',
+    vendorName: 'Mazraa Al Baraka',
+    name: 'Botte d\'Épinards',
+    originalPrice: 15,
+    discountedPrice: 7,
     quantityLeft: 15,
     category: 'Vegetables',
     imageUrl: assignImagePath(), 
-    expiryDate: 'Use soon',
-    description: 'Fresh spinach, slightly wilted.'
+    expiryDate: 'À utiliser rapidement',
+    description: 'Épinards frais, légèrement flétris.'
   }
 ];
 
@@ -167,8 +167,12 @@ export const mockUserProfile: UserProfile = {
   id: 'user123',
   name: 'Imane Nejmaoui',
   email: 'imane.nejmaoui@example.com',
-  address: '100 Eco Lane, Green City, GC 54321',
-  profilePictureUrl: '/assets/im1.jpg', // Specific jpg for profile
+  address: 'Appt 5, 20 Rue de la Paix, Maârif, Casablanca',
+  profilePictureUrl: '/assets/im1.jpg', 
 };
 
 export const mockFavoriteVendors: Listing[] = mockListings.filter(listing => listing.isFavorite);
+// Reset counter for next potential use if this file is re-evaluated in some contexts
+imageCounter = 1;
+
+    
