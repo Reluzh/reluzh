@@ -2,7 +2,7 @@
 "use client";
 
 import Link from 'next/link';
-import Image from 'next/image'; // Import next/image
+import Image from 'next/image'; 
 import { usePathname } from 'next/navigation';
 import { Home, Search, ShoppingBasket, ClipboardList, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -22,21 +22,21 @@ export default function DesktopNavbar() {
     <nav className="hidden md:flex bg-card border-b border-border sticky top-0 z-40">
       <div className="container mx-auto px-4 h-16 flex justify-between items-center">
         <Link href="/" className="flex items-center gap-2 group">
-          <Image 
-            src="/assets/reboxit-logo.png" 
-            alt="ReboxIt Logo" 
-            width={40} 
-            height={40} 
-            objectFit="contain"
-            className="group-hover:opacity-80 transition-opacity" 
-          />
+          <div className="relative w-10 h-10"> {/* Equivalent to width/height 40px */}
+            <Image 
+              src="/assets/reboxit-logo.png" 
+              alt="ReboxIt Logo" 
+              layout="fill"
+              objectFit="contain"
+              className="group-hover:opacity-80 transition-opacity" 
+            />
+          </div>
           <span className="font-bold text-lg text-foreground group-hover:text-primary transition-colors">ReboxIt</span>
         </Link>
         <div className="flex items-center space-x-6">
           {navItems.map((item) => {
-            // The "Account" label for /profile page is more common than "Profile"
             const displayLabel = item.href === '/profile' ? 'Account' : item.label;
-            const isActive = pathname === item.href || (item.href === "/" && pathname.startsWith("/listing")); // Highlight Home if on listing detail
+            const isActive = pathname === item.href || (item.href === "/" && pathname.startsWith("/listing"));
 
             return (
               <Link
@@ -47,8 +47,6 @@ export default function DesktopNavbar() {
                   isActive ? "text-primary" : "text-muted-foreground"
                 )}
               >
-                {/* Example to include icons, can be enabled if desired */}
-                {/* <item.icon className={cn("h-5 w-5 mr-1 inline-block", isActive ? "text-primary" : "text-muted-foreground")} /> */}
                 {displayLabel}
               </Link>
             );
