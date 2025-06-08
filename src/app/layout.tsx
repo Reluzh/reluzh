@@ -6,7 +6,7 @@ import Footer from '@/components/layout/footer';
 import BottomNavbar from '@/components/layout/bottom-navbar'; // New bottom navbar
 
 export const metadata: Metadata = {
-  title: 'ResQBox - Surplus Food Rescue',
+  title: 'ReboxIt - Surplus Food Rescue',
   description: 'Discover surplus food deals from local stores and restaurants.',
 };
 

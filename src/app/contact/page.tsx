@@ -80,7 +80,7 @@ export default function ContactPage() {
               <Mail className="w-5 h-5 mr-3 mt-0.5 text-accent shrink-0" />
               <div>
                 <h4 className="font-medium text-foreground">Email Us</h4>
-                <a href="mailto:support@resqbox.com" className="hover:text-primary">support@resqbox.com</a>
+                <a href="mailto:support@reboxit.com" className="hover:text-primary">support@reboxit.com</a>
               </div>
             </div>
             <div className="flex items-start">

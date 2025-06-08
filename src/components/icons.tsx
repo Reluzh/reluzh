@@ -1,12 +1,13 @@
+
 import type { SVGProps } from 'react';
 
-export const ResQBoxLogo = (props: SVGProps<SVGSVGElement>) => (
+export const ReboxItLogo = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 100 100"
     width="40"
     height="40"
-    aria-label="ResQBox Logo"
+    aria-label="ReboxIt Logo"
     {...props}
   >
     <rect width="100" height="100" rx="20" fill="hsl(var(--primary))" />

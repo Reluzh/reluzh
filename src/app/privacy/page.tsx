@@ -18,8 +18,8 @@ export default function PrivacyPage() {
           <CardTitle className="text-xl font-semibold text-primary">1. Introduction</CardTitle>
         </CardHeader>
         <CardContent className="text-muted-foreground space-y-3 text-sm">
-          <p>Welcome to ResQBox ("we," "our," or "us"). We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy notice, or our practices with regards to your personal information, please contact us at privacy@resqbox.com.</p>
-          <p>This privacy notice describes how we might use your information if you visit our website at resqbox.com, use our mobile application, or engage with us in other related ways ― including any sales, marketing, or events.</p>
+          <p>Welcome to ReboxIt ("we," "our," or "us"). We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy notice, or our practices with regards to your personal information, please contact us at privacy@reboxit.com.</p>
+          <p>This privacy notice describes how we might use your information if you visit our website at reboxit.com, use our mobile application, or engage with us in other related ways ― including any sales, marketing, or events.</p>
         </CardContent>
       </Card>
 
@@ -76,9 +76,9 @@ export default function PrivacyPage() {
           <CardTitle className="text-xl font-semibold text-primary">5. Contact Us</CardTitle>
         </CardHeader>
         <CardContent className="text-muted-foreground text-sm">
-          <p>If you have questions or comments about this notice, you may email us at privacy@resqbox.com or by post to:</p>
+          <p>If you have questions or comments about this notice, you may email us at privacy@reboxit.com or by post to:</p>
           <p className="mt-2">
-            ResQBox Privacy Team<br />
+            ReboxIt Privacy Team<br />
             100 Eco Lane<br />
             Green City, GC 54321<br />
             United States

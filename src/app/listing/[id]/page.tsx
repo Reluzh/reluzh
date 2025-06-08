@@ -133,7 +133,7 @@ export default async function OfferDetailsPage({ params }: OfferDetailsPageProps
                   ))}
                 </div>
               ) : (
-                <p className="text-muted-foreground mt-2">No current offers or menu items listed via ResQBox.</p>
+                <p className="text-muted-foreground mt-2">No current offers or menu items listed via ReboxIt.</p>
               )}
             </CardContent>
           </Card>
