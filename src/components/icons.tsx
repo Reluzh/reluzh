@@ -10,21 +10,23 @@ export const ReboxItLogo = (props: SVGProps<SVGSVGElement>) => (
     aria-label="ReboxIt Logo"
     {...props}
   >
+    {/* Background */}
     <rect width="100" height="100" rx="20" fill="hsl(var(--primary))" />
+
+    {/* Box outline (front face and top flaps indicating an open box) */}
     <path
-      d="M30 70 Q50 90 70 70 M30 70 L30 40 Q30 20 50 20 Q70 20 70 40 L70 70 M50 20 L50 55 M35 50 L65 50"
+      d="M25 75 L25 45 L75 45 L75 75 Z M25 45 L50 30 L75 45"
       stroke="hsl(var(--primary-foreground))"
       strokeWidth="8"
       fill="none"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
+
+    {/* Leaf shape inside the box. Tip at (50,42), base around (50,55) */}
     <path
-      d="M40 55 A10 10 0 0 1 60 55"
-      stroke="hsl(var(--primary-foreground))"
-      strokeWidth="6"
-      fill="none"
-      strokeLinecap="round"
+      d="M50 42 C40 47 40 55 45 55 C47 52 53 52 55 55 C60 55 60 47 50 42 Z"
+      fill="hsl(var(--primary-foreground))"
     />
   </svg>
 );
