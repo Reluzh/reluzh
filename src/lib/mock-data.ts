@@ -3,14 +3,19 @@ import type { Listing, GroceryItem, UserProfile } from '@/types';
 
 let imageCounter = 1; 
 
-export function assignImagePath(originalPath?: string): string | undefined {
+// Updated to always return a string (either a local asset or a placeholder)
+export function assignImagePath(originalPath?: string): string {
+  // If an explicit /assets/ path is provided (e.g. for profile pic manually set), use it.
   if (originalPath && originalPath.startsWith('/assets/')) {
     return originalPath;
   }
-  if (imageCounter > 19) return undefined; // Only 19 placeholder images
-
-  const imageNumber = imageCounter++;
-  return `/assets/im${imageNumber}.png`;
+  
+  if (imageCounter <= 19) {
+    const imageNumber = imageCounter++;
+    return `/assets/im${imageNumber}.png`;
+  }
+  // Fallback to a generic placeholder if we've used up im1-im19.png
+  return `https://placehold.co/300x200.png`; 
 };
 
 
@@ -139,7 +144,7 @@ export const mockGroceryItems: GroceryItem[] = [
     id: 'g3',
     vendorId: 'v_hanout_al_hay',
     vendorName: 'Hanout Al Hay',
-    name: 'Lait 1L',
+    name: 'Lait 1L', // Changed from "Milk Gallon" for regional relevance
     originalPrice: 12,
     discountedPrice: 8,
     quantityLeft: 5,
@@ -172,7 +177,3 @@ export const mockUserProfile: UserProfile = {
 };
 
 export const mockFavoriteVendors: Listing[] = mockListings.filter(listing => listing.isFavorite);
-// Reset counter for next potential use if this file is re-evaluated in some contexts
-imageCounter = 1;
-
-    
