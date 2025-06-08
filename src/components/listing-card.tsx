@@ -62,7 +62,7 @@ const ListingCard: React.FC<ListingCardProps> = ({ listing }) => {
         </div>
       </CardContent>
       <CardFooter className="px-4 pb-4 pt-0 flex justify-between items-center">
-        <Link href={`/listing/${listing.id}`} passHref legacyBehavior>
+        <Link href={`/listing/${listing.id}`}>
           <Button variant="default" size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-md w-full">View Details</Button>
         </Link>
         {/* Favorite button can be added back if state management is in place */}
