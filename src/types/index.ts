@@ -6,7 +6,7 @@ export interface Vendor {
   address: string;
   distance: string; // e.g., "0.5 miles"
   rating: number; // 1-5
-  imageUrl: string;
+  imageUrl: string | undefined; // Changed from string
   isFavorite?: boolean;
 }
 
@@ -42,5 +42,5 @@ export interface UserProfile {
   name: string;
   email: string;
   address?: string;
-  profilePictureUrl?: string;
+  profilePictureUrl?: string | undefined; // Already optional
 }
