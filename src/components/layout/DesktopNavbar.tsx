@@ -23,10 +23,11 @@ export default function DesktopNavbar() {
       <div className="container mx-auto px-4 h-16 flex justify-between items-center">
         <Link href="/" className="flex items-center gap-2 group">
           <Image 
-            src="/assets/reboxit-logo.png" // Changed from /assets/leaf.png
+            src="/assets/reboxit-logo.png" 
             alt="ReboxIt Logo" 
-            width={32} // Corresponds to h-8 w-8, adjust if the new logo aspect ratio is different
-            height={32} // Corresponds to h-8 w-8, adjust if the new logo aspect ratio is different
+            width={40} 
+            height={40} 
+            objectFit="contain"
             className="group-hover:opacity-80 transition-opacity" 
           />
           <span className="font-bold text-lg text-foreground group-hover:text-primary transition-colors">ReboxIt</span>
