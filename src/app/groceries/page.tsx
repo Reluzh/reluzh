@@ -152,9 +152,11 @@ export default function GroceriesPage() {
           {mockGroceryCategories.map(category => (
             <Link href={`/groceries/category/${category.id}`} key={category.id} className="block group">
               <Card className="overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <div className="relative aspect-[4/3]">
-                  <Image src={category.imageUrl} alt={category.name} layout="fill" objectFit="cover" className="rounded-t-lg group-hover:scale-105 transition-transform" />
-                </div>
+                {category.imageUrl && (
+                  <div className="relative aspect-[4/3]">
+                    <Image src={category.imageUrl} alt={category.name} layout="fill" objectFit="cover" className="rounded-t-lg group-hover:scale-105 transition-transform" />
+                  </div>
+                )}
                 <CardContent className="p-3">
                   <p className="font-medium text-sm text-center text-foreground truncate">{category.name}</p>
                 </CardContent>
@@ -168,11 +170,13 @@ export default function GroceriesPage() {
         <h2 className="text-xl font-semibold text-foreground mb-3">Popular Stores</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
           {mockPopularStores.map(store => (
-             <Link href={`/listing/${store.id}`} key={store.id} className="block group"> {/* Assuming store IDs match listing IDs */}
+             <Link href={`/listing/${store.id}`} key={store.id} className="block group">
               <Card className="overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <div className="relative aspect-[4/3]">
-                  <Image src={store.imageUrl} alt={store.name} layout="fill" objectFit="cover" className="rounded-t-lg group-hover:scale-105 transition-transform" />
-                </div>
+                {store.imageUrl && (
+                  <div className="relative aspect-[4/3]">
+                    <Image src={store.imageUrl} alt={store.name} layout="fill" objectFit="cover" className="rounded-t-lg group-hover:scale-105 transition-transform" />
+                  </div>
+                )}
                 <CardContent className="p-3">
                   <p className="font-medium text-sm text-center text-foreground truncate">{store.name}</p>
                    <Badge variant="outline" className="text-xs block w-fit mx-auto mt-1">{store.type}</Badge>
@@ -183,7 +187,7 @@ export default function GroceriesPage() {
         </div>
       </section>
 
-      {activeFilter === "Deals" && ( /* Example: Conditionally show items if "Deals" is selected */
+      {activeFilter === "Deals" && ( 
         <section>
             <h2 className="text-xl font-semibold text-foreground mb-3">Current Deals</h2>
             {mockGroceryItems.length > 0 ? (

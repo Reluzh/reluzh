@@ -6,7 +6,7 @@ export interface Vendor {
   address: string;
   distance: string; // e.g., "0.5 miles"
   rating: number; // 1-5
-  imageUrl: string; // Changed back from string | undefined
+  imageUrl: string | undefined; // Changed from string to string | undefined
   isFavorite?: boolean;
 }
 
@@ -17,7 +17,7 @@ export interface OfferItem {
   discountedPrice: number;
   quantityLeft: number;
   description?: string;
-  imageUrl?: string;
+  imageUrl?: string | undefined;
   itemCategory?: string; // e.g., "Popular", "New", "Chef's Choice" for restaurant items
 }
 

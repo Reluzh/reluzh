@@ -3,8 +3,8 @@ import type { Listing, GroceryItem, UserProfile } from '@/types';
 
 let imageCounter = 1; 
 
-// Updated to always return a string (either a local asset or a placeholder)
-export function assignImagePath(originalPath?: string): string {
+// Updated to return string | undefined
+export function assignImagePath(originalPath?: string): string | undefined {
   // If an explicit /assets/ path is provided (e.g. for profile pic manually set), use it.
   if (originalPath && originalPath.startsWith('/assets/')) {
     return originalPath;
@@ -14,8 +14,8 @@ export function assignImagePath(originalPath?: string): string {
     const imageNumber = imageCounter++;
     return `/assets/im${imageNumber}.png`;
   }
-  // Fallback to a generic placeholder if we've used up im1-im19.png
-  return `https://placehold.co/300x200.png`; 
+  // Fallback to undefined if we've used up im1-im19.png
+  return undefined; 
 };
 
 
@@ -98,7 +98,7 @@ export const mockListings: Listing[] = [
   },
 ];
 
-export const mockGroceryCategories = [
+export const mockGroceryCategories: {id: string; name: string; imageUrl: string | undefined}[] = [
   { id: 'cat1', name: 'Fruits & Légumes Frais', imageUrl: assignImagePath() },
   { id: 'cat2', name: 'Épicerie', imageUrl: assignImagePath() },
   { id: 'cat3', name: 'Produits Laitiers & Oeufs', imageUrl: assignImagePath() },
@@ -144,7 +144,7 @@ export const mockGroceryItems: GroceryItem[] = [
     id: 'g3',
     vendorId: 'v_hanout_al_hay',
     vendorName: 'Hanout Al Hay',
-    name: 'Lait 1L', // Changed from "Milk Gallon" for regional relevance
+    name: 'Lait 1L', 
     originalPrice: 12,
     discountedPrice: 8,
     quantityLeft: 5,
