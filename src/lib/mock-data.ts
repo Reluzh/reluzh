@@ -12,7 +12,7 @@ export function assignImagePath(originalPath?: string): string | undefined {
   
   if (imageCounter <= 19) {
     const imageNumber = imageCounter++;
-    return `/assets/im${imageNumber}.png`;
+    return `/assets/im${imageNumber}.jpg`;
   }
   // Fallback to undefined if we've used up im1-im19.png
   return undefined; 
@@ -30,14 +30,14 @@ export const mockListings: Listing[] = [
     ratingCount: 215,
     priceTier: '$$',
     prepTime: '25-35 min',
-    imageUrl: assignImagePath(), 
+    imageUrl: assignImagePath(),
     pickupTimes: 'Mon-Fri, 6 PM - 8 PM',
     category: 'Cafe',
     isFavorite: true,
     offers: [
       { id: 'o1', name: 'Spaghetti Carbonara', itemCategory: 'Popular', originalPrice: 120, discountedPrice: 99, quantityLeft: 5, description: 'Pâtes crémeuses avec bacon et parmesan.', imageUrl: assignImagePath() },
       { id: 'o2', name: 'Pizza Margherita', itemCategory: 'New', originalPrice: 150, discountedPrice: 120, quantityLeft: 10, description: 'Pizza classique avec tomate, mozzarella et basilic.', imageUrl: assignImagePath() },
-      { id: 'o2b', name: 'Tiramisu', itemCategory: "Chef's Choice", originalPrice: 70, discountedPrice: 55, quantityLeft: 7, description: 'Dessert au café avec crème mascarpone.', imageUrl: assignImagePath()},
+      { id: 'o2b', name: 'Tiramisu', itemCategory: "Chef's Choice", originalPrice: 70, discountedPrice: 55, quantityLeft: 7, description: 'Dessert au café avec crème mascarpone.', imageUrl: assignImagePath() },
       { id: 'o2c', name: 'Toast Avocat', itemCategory: 'Popular', originalPrice: 80, discountedPrice: 65, quantityLeft: 8, description: 'Pain au levain avec avocat frais et assaisonnement.', imageUrl: assignImagePath() },
     ],
   },
@@ -106,7 +106,7 @@ export const mockGroceryCategories: {id: string; name: string; imageUrl: string 
 ];
 
 export const mockPopularStores: Pick<Listing, 'id' | 'name' | 'imageUrl' | 'type'>[] = [
-  { id: 'store1', name: 'Aswak Assalam', type: 'Grocery Store', imageUrl: assignImagePath() }, 
+  { id: 'store1', name: 'Aswak Assalam', type: 'Grocery Store', imageUrl: assignImagePath() },
   { id: 'store2', name: 'Carrefour Market Anfa', type: 'Grocery Store', imageUrl: assignImagePath() },
   { id: 'store3', name: 'La Vie Claire Triangle d\'Or', type: 'Grocery Store', imageUrl: assignImagePath() },
   { id: 'store4', name: 'BIM Sidi Moumen', type: 'Grocery Store', imageUrl: assignImagePath() },
@@ -144,7 +144,7 @@ export const mockGroceryItems: GroceryItem[] = [
     id: 'g3',
     vendorId: 'v_hanout_al_hay',
     vendorName: 'Hanout Al Hay',
-    name: 'Lait 1L', 
+    name: 'Lait 1L',
     originalPrice: 12,
     discountedPrice: 8,
     quantityLeft: 5,
@@ -162,7 +162,7 @@ export const mockGroceryItems: GroceryItem[] = [
     discountedPrice: 7,
     quantityLeft: 15,
     category: 'Vegetables',
-    imageUrl: assignImagePath(), 
+    imageUrl: assignImagePath(),
     expiryDate: 'À utiliser rapidement',
     description: 'Épinards frais, légèrement flétris.'
   }
@@ -173,7 +173,7 @@ export const mockUserProfile: UserProfile = {
   name: 'Imane Nejmaoui',
   email: 'imane.nejmaoui@example.com',
   address: 'Appt 5, 20 Rue de la Paix, Maârif, Casablanca',
-  profilePictureUrl: '/assets/im1.jpg', 
+  profilePictureUrl: assignImagePath('/assets/im1.jpg'),
 };
 
 export const mockFavoriteVendors: Listing[] = mockListings.filter(listing => listing.isFavorite);

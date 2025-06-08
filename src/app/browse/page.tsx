@@ -6,7 +6,7 @@ import { Search } from "lucide-react";
 export default function BrowsePage() {
   return (
     <div className="space-y-6">
-      <header className="py-4">
+      <header className="py-4 text-center">
         <h1 className="text-2xl font-bold text-foreground">Browse</h1>
       </header>
       

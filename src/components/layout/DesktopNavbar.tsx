@@ -24,14 +24,14 @@ export default function DesktopNavbar() {
         <Link href="/" className="flex items-center gap-2 group">
           <div className="relative w-10 h-10"> {/* Equivalent to width/height 40px */}
             <Image 
-              src="/assets/reboxit-logo.png" 
-              alt="ReboxIt Logo" 
+              src="/assets/logo.png" 
+              alt="App Logo" 
               layout="fill"
               objectFit="contain"
               className="group-hover:opacity-80 transition-opacity" 
             />
           </div>
-          <span className="font-bold text-lg text-foreground group-hover:text-primary transition-colors">ReboxIt</span>
+          <span className="font-bold text-lg transition-colors" style={{ color: '#339989' }}>ReboxIt</span>
         </Link>
         <div className="flex items-center space-x-6">
           {navItems.map((item) => {

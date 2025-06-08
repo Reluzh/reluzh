@@ -39,7 +39,7 @@ export default function ContactPage() {
 
       <div className="grid md:grid-cols-2 gap-6">
         <Card className="shadow-md rounded-lg border">
-          <CardHeader>
+          <CardHeader> 
             <CardTitle className="text-xl font-semibold text-primary flex items-center">
               <MessageSquareText className="w-5 h-5 mr-2.5 text-accent" /> Envoyez-nous un Message
             </CardTitle>
@@ -86,22 +86,22 @@ export default function ContactPage() {
             <div className="flex items-start">
               <Phone className="w-5 h-5 mr-3 mt-0.5 text-accent shrink-0" />
               <div>
-                <h4 className="font-medium text-foreground">Appelez-nous (Support: 9h-17h)</h4>
+                <h4 className="font-medium text-foreground">Call Us (Support: 9 AM - 5 PM)</h4>
                 <p>+212 522 12 34 56</p>
               </div>
             </div>
             <div className="flex items-start">
               <MapPin className="w-5 h-5 mr-3 mt-0.5 text-accent shrink-0" />
               <div>
-                <h4 className="font-medium text-foreground">Notre Bureau</h4>
+                <h4 className="font-medium text-foreground">Our Office</h4>
                 <p>Technopark, Route de Nouaceur, Casablanca, Maroc</p>
               </div>
             </div>
             <div>
-              <h4 className="font-medium text-foreground mb-1.5">Questions Fréquemment Posées</h4>
+              <h4 className="font-medium text-foreground mb-1.5">Frequently Asked Questions</h4>
               <Button variant="outline" size="sm" asChild className="rounded-md bg-card">
-                <a href="/faq">Visiter la Page FAQ</a>
-              </Button>
+                <a href="/faq">Visit FAQ Page</a> 
+              </Button> 
             </div>
           </CardContent>
         </Card>

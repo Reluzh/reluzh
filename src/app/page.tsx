@@ -11,7 +11,7 @@ export default function HomePage() {
     <div className="space-y-6">
       <header className="py-2">
         {/* Simplified header, design for home page list wasn't provided, so keeping it functional */}
-        <h1 className="text-2xl font-bold text-foreground">Découvrir les Offres</h1>
+        <h1 className="text-2xl font-bold text-foreground">Discover Deals</h1>
       </header>
 
       <section className="space-y-4">
@@ -21,6 +21,7 @@ export default function HomePage() {
               <Input 
                 type="search" 
                 placeholder="Rechercher restaurants, articles..." 
+                placeholder="Search restaurants, items..."
                 className="w-full pl-10 pr-4 py-3 rounded-lg border bg-card focus-visible:ring-primary text-base"
               />
             </div>
@@ -29,18 +30,19 @@ export default function HomePage() {
               <Input 
                 type="text" 
                 placeholder="Casablanca, Maroc" 
+                placeholder="Casablanca, Morocco"
                 className="w-full pl-10 pr-4 py-3 rounded-lg border bg-card focus-visible:ring-primary text-base sm:min-w-[180px]"
               />
             </div>
              <Button variant="outline" className="h-12 px-3 rounded-lg bg-card flex-shrink-0">
                 <SlidersHorizontal className="h-5 w-5"/>
-                <span className="sr-only">Filtres</span>
+                <span className="sr-only">Filters</span>
             </Button>
         </div>
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold text-foreground mb-4">Offres à Proximité</h2>
+        <h2 className="text-xl font-semibold text-foreground mb-4">Nearby Deals</h2>
         {mockListings.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
             {mockListings.map((listing, index) => (
@@ -48,7 +50,7 @@ export default function HomePage() {
             ))}
           </div>
         ) : (
-            <p className="text-center text-muted-foreground py-8">Aucune offre trouvée. Essayez d'ajuster votre recherche ou votre emplacement !</p>
+            <p className="text-center text-muted-foreground py-8">No deals found. Try adjusting your search or location!</p>
         )}
       </section>
     </div>
