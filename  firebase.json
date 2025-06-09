@@ -1,0 +1,8 @@
+{
+    "hosting": {
+      "site": "rebox-it",
+  
+      "public": "public"
+      
+    }
+  }
