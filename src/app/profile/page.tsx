@@ -17,7 +17,7 @@ interface ProfileMenuItemProps {
   description?: string;
   href: string;
   isExternal?: boolean;
-  onClick?: () => void; // Added onClick for logout
+  onClick?: () => void; 
 }
 
 const ProfileMenuItem: React.FC<ProfileMenuItemProps> = ({ icon: Icon, label, description, href, isExternal, onClick }) => {
@@ -49,43 +49,53 @@ export default function ProfilePage() {
   const { toast } = useToast();
 
   useEffect(() => {
-    if (!authLoading && !user) {
-      router.push('/login');
-    }
+    // DEVELOPMENT: The redirect is temporarily disabled to allow viewing the profile page
+    // without full authentication. Re-enable for production.
+    // if (!authLoading && !user) {
+    //   router.push('/login');
+    // }
   }, [user, authLoading, router]);
 
   const handleLogout = async () => {
     try {
       await logoutUser();
       toast({ title: "Logged out successfully."});
-      router.push('/login'); // Ensure redirect after logout
+      router.push('/login'); 
     } catch (error: any) {
       toast({ title: "Logout Failed", description: error.message || "An unknown error occurred.", variant: "destructive" });
     }
   };
 
-  if (authLoading || !user) { // Show loading until user state is confirmed
-    return <div className="flex justify-center items-center min-h-[calc(100vh-12rem)]"><p>Loading profile...</p></div>;
+  if (authLoading) {
+    return <div className="flex justify-center items-center min-h-[calc(100vh-12rem)]"><p>Loading profile (auth)...</p></div>;
   }
-  
-  // This check ensures firestoreUser is loaded before rendering dependent UI
-  if (!firestoreUser) {
+
+  // If user is authenticated but firestoreUser data is still loading or missing
+  if (user && !firestoreUser && !authLoading) {
       return <div className="flex justify-center items-center min-h-[calc(100vh-12rem)]"><p>Loading user details...</p></div>;
   }
 
+  // Placeholder data for development if user/firestoreUser is not available
+  const effectiveUser = user;
+  const effectiveFirestoreUser = firestoreUser;
+
+  const displayName = effectiveFirestoreUser?.displayName || effectiveUser?.displayName || "Development User";
+  const email = effectiveUser?.email || "dev@example.com";
+  const photoURL = effectiveFirestoreUser?.photoURL || effectiveUser?.photoURL || undefined;
+  const fallbackChar = (displayName.charAt(0) || 'D').toUpperCase();
 
   return (
     <div className="pb-4">
       <header className="flex items-center space-x-4 py-4 mb-4">
         <Avatar className="w-16 h-16 border-2 border-primary">
-          <AvatarImage src={firestoreUser.photoURL || user.photoURL || undefined} alt={firestoreUser.displayName || 'User'} />
+          <AvatarImage src={photoURL} alt={displayName} />
           <AvatarFallback className="text-2xl bg-muted text-muted-foreground">
-            {(firestoreUser.displayName || user.email || 'U').charAt(0).toUpperCase()}
+            {fallbackChar}
           </AvatarFallback>
         </Avatar>
         <div>
-          <h1 className="text-xl font-bold text-foreground">{firestoreUser.displayName || 'User'}</h1>
-          <p className="text-sm text-muted-foreground">{user.email}</p>
+          <h1 className="text-xl font-bold text-foreground">{displayName}</h1>
+          <p className="text-sm text-muted-foreground">{email}</p>
         </div>
       </header>
 
@@ -131,7 +141,7 @@ export default function ProfilePage() {
         variant="ghost" 
         onClick={handleLogout} 
         className="w-full justify-start text-destructive hover:text-destructive hover:bg-destructive/10 mt-8 py-4 px-1 text-base" 
-        disabled={authLoading}
+        disabled={authLoading || !user} // Disable if not actually logged in or still loading
       >
         <LogOut className="h-6 w-6 mr-4" />
         {authLoading ? 'Logging out...' : 'Log Out'}
