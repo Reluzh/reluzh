@@ -70,7 +70,7 @@ export default function DesktopNavbar() {
                   (pathname === "/login" || pathname === "/signup") ? "text-primary" : "text-muted-foreground"
                 )}
               >
-                Login
+                Account
               </Link>
             )
           )}

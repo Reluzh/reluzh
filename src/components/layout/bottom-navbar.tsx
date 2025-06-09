@@ -24,7 +24,7 @@ export default function BottomNavbar() {
     if (user) {
       finalNavItems.push({ href: '/profile', label: 'Account', icon: User });
     } else {
-      finalNavItems.push({ href: '/login', label: 'Login', icon: LogIn });
+      finalNavItems.push({ href: '/login', label: 'Account', icon: LogIn });
     }
   }
 
