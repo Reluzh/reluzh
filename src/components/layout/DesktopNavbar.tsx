@@ -28,9 +28,8 @@ export default function DesktopNavbar() {
             <Image 
               src="/assets/reboxit-logo.png" 
               alt="App Logo" 
-              layout="fill"
-              objectFit="contain"
-              className="group-hover:opacity-80 transition-opacity" 
+              fill
+              className="group-hover:opacity-80 transition-opacity object-contain" 
             />
           </div>
           <span className="font-bold text-lg transition-colors" style={{ color: '#339989' }}>ReboxIt</span>

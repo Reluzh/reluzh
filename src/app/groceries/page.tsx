@@ -157,7 +157,7 @@ export default function GroceriesPage() {
               <Card className="overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 {category.imageUrl && (
                   <div className="relative aspect-[4/3]">
-                    <Image src={category.imageUrl} alt={category.name} layout="fill" objectFit="cover" className="rounded-t-lg group-hover:scale-105 transition-transform" />
+                    <Image src={category.imageUrl} alt={category.name} fill className="rounded-t-lg group-hover:scale-105 transition-transform object-cover" />
                   </div>
                 )}
                 <CardContent className="p-3">
@@ -177,7 +177,7 @@ export default function GroceriesPage() {
               <Card className="overflow-hidden rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 {store.imageUrl && (
                   <div className="relative aspect-[4/3]">
-                    <Image src={store.imageUrl} alt={store.name} layout="fill" objectFit="cover" className="rounded-t-lg group-hover:scale-105 transition-transform" />
+                    <Image src={store.imageUrl} alt={store.name} fill className="rounded-t-lg group-hover:scale-105 transition-transform object-cover" />
                   </div>
                 )}
                 <CardContent className="p-3">

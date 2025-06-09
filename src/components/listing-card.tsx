@@ -20,9 +20,8 @@ const ListingCard: React.FC<ListingCardProps> = ({ listing }) => {
             <Image
               src={listing.imageUrl}
               alt={listing.name}
-              layout="fill"
-              objectFit="cover"
-              className="group-hover:scale-105 transition-transform duration-300"
+              fill
+              className="group-hover:scale-105 transition-transform duration-300 object-cover"
             />
           )}
            <Badge variant={listing.type === 'Restaurant' || listing.type === 'Cafe' || listing.type === 'Bakery' || listing.type === 'Grocery Store' ? 'secondary' : 'outline'} className="absolute top-2 left-2 capitalize">

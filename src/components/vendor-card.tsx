@@ -20,8 +20,8 @@ const VendorCard: React.FC<VendorCardProps> = ({ vendor, onRemoveFavorite }) => 
           <Image
             src={vendor.imageUrl}
             alt={vendor.name}
-            layout="fill"
-            objectFit="cover"
+            fill
+            className="object-cover"
           />
            <Badge variant={vendor.type === 'Restaurant' ? 'secondary' : 'outline'} className="absolute top-2 left-2">
             {vendor.type}

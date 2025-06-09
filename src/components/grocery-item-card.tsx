@@ -20,8 +20,8 @@ const GroceryItemCard: React.FC<GroceryItemCardProps> = ({ item }) => {
           <Image
             src={item.imageUrl}
             alt={item.name}
-            layout="fill"
-            objectFit="cover"
+            fill
+            className="object-cover"
           />
         </div>
       )}
@@ -61,5 +61,3 @@ const GroceryItemCard: React.FC<GroceryItemCardProps> = ({ item }) => {
 };
 
 export default GroceryItemCard;
-
-    

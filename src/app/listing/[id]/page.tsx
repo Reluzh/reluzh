@@ -28,7 +28,7 @@ const FeaturedItemCard: React.FC<{ item: OfferItem }> = ({ item }) => (
     </div>
     {item.imageUrl && (
       <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-lg overflow-hidden shrink-0">
-        <Image src={item.imageUrl} alt={item.name} layout="fill" objectFit="cover" />
+        <Image src={item.imageUrl} alt={item.name} fill className="object-cover" />
       </div>
     )}
   </div>
@@ -70,9 +70,9 @@ export default async function OfferDetailsPage({ params }: OfferDetailsPageProps
           <Image
             src={listing.imageUrl}
             alt={listing.name}
-            layout="fill"
-            objectFit="cover"
+            fill
             priority
+            className="object-cover"
           />
         }
       </div>
