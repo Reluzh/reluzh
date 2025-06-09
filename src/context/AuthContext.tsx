@@ -35,7 +35,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const createUserDocument = async (firebaseUser: FirebaseUserType, displayNameInput?: string | null) => {
     const userDocRef = doc(db, 'users', firebaseUser.uid);
-    // Make sure to get displayName from firebaseUser first if available (e.g. from Google)
     const nameToStore = displayNameInput || firebaseUser.displayName || firebaseUser.email?.split('@')[0] || 'Anonymous User';
     
     const newUserDoc: FirestoreUserType = {
@@ -43,12 +42,24 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       email: firebaseUser.email,
       displayName: nameToStore,
       photoURL: firebaseUser.photoURL,
-      createdAt: serverTimestamp() as Timestamp, // Firestore handles serverTimestamp()
+      createdAt: serverTimestamp() as Timestamp, 
     };
-    await setDoc(userDocRef, newUserDoc, { merge: true });
-    // Fetch the document to get the server-generated timestamp correctly
-    const savedDoc = await getDoc(userDocRef);
-    setFirestoreUser(savedDoc.data() as FirestoreUserType);
+    try {
+      await setDoc(userDocRef, newUserDoc, { merge: true });
+      const savedDoc = await getDoc(userDocRef);
+      if (savedDoc.exists()) {
+        setFirestoreUser(savedDoc.data() as FirestoreUserType);
+      } else {
+        // This case should ideally not happen if setDoc was successful
+        console.warn("User document not found immediately after creation for UID:", firebaseUser.uid);
+        setFirestoreUser(null);
+      }
+    } catch (error) {
+        console.error("Error creating or fetching user document after setDoc:", error);
+        // Depending on the error, you might want to set firestoreUser to null or handle differently
+        // For "client is offline", this will prevent a crash.
+        setFirestoreUser(null);
+    }
   };
 
   useEffect(() => {
@@ -56,19 +67,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(currentUser);
       if (currentUser) {
         const userDocRef = doc(db, 'users', currentUser.uid);
-        const userDocSnap = await getDoc(userDocRef);
-        if (userDocSnap.exists()) {
-          setFirestoreUser(userDocSnap.data() as FirestoreUserType);
-        } else {
-          // This case could happen if user signed up but doc creation failed,
-          // or for a new Google Sign-In user where the doc wasn't created yet.
-          // Create it now if it's missing, especially for Google users.
-          if (currentUser.providerData.some(p => p.providerId === GoogleAuthProvider.PROVIDER_ID) || currentUser.email) {
-             await createUserDocument(currentUser); // name will be from currentUser.displayName
+        try {
+          const userDocSnap = await getDoc(userDocRef);
+          if (userDocSnap.exists()) {
+            setFirestoreUser(userDocSnap.data() as FirestoreUserType);
           } else {
-            console.warn("User document doesn't exist and cannot auto-create without more info.");
-            setFirestoreUser(null);
+            // This case could happen if user signed up but doc creation failed,
+            // or for a new Google Sign-In user where the doc wasn't created yet.
+            // Create it now if it's missing.
+            console.warn("User document not found for existing user UID:", currentUser.uid, "Attempting to create it.");
+            await createUserDocument(currentUser); // name will be from currentUser.displayName or email
           }
+        } catch (error) {
+          console.error("Error fetching user document in onAuthStateChanged:", error);
+          // If fetching fails (e.g., client is offline), set firestoreUser to null.
+          // The UI should handle this state gracefully (e.g., show a loading/error message).
+          setFirestoreUser(null);
         }
       } else {
         setFirestoreUser(null);
@@ -85,10 +99,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
       if (userCredential.user) {
         await updateProfile(userCredential.user, { displayName: name });
-        await createUserDocument(userCredential.user, name); // Pass name explicitly
+        await createUserDocument(userCredential.user, name); 
       }
     } finally {
-      // onAuthStateChanged will set loading to false after user state is confirmed
+      // onAuthStateChanged will eventually set loading to false.
+      // No need to setLoading(false) here as onAuthStateChanged handles the final state.
     }
   };
   
@@ -97,7 +112,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       await signInWithEmailAndPassword(auth, email, pass);
     } finally {
-      // onAuthStateChanged will handle setting user, firestoreUser, and loading
+      // onAuthStateChanged will handle setting user, firestoreUser, and loading.
     }
   };
 
@@ -106,22 +121,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const provider = new GoogleAuthProvider();
     try {
       const result = await signInWithPopup(auth, provider);
-      if (result.user) {
-        const userDocRef = doc(db, 'users', result.user.uid);
-        const docSnap = await getDoc(userDocRef);
-        if (!docSnap.exists()) {
-          await createUserDocument(result.user, result.user.displayName);
-        }
-      }
+      // The onAuthStateChanged listener will handle creating/fetching the user document.
+      // No need to explicitly call createUserDocument here unless onAuthStateChanged logic is insufficient.
+      // The current onAuthStateChanged logic should cover new Google sign-ins.
     } finally {
-      // onAuthStateChanged handles updates
+      // onAuthStateChanged handles updates.
     }
   };
 
   const logoutUser = async () => {
     setLoading(true);
     await signOut(auth);
-    // onAuthStateChanged will set user to null and loading to false
+    // onAuthStateChanged will set user to null and loading to false.
   };
 
   return (
